@@ -1,0 +1,27 @@
+name: Deployment Vietube
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd desktop/phimchill
+            git fetch origin
+            git checkout main
+            git pull
+            docker build -t phimchill .
+            docker stop phimchill_container || true
+            docker rm phimchill_container || true
+            docker run -d --name phimchill_container -p 3000:3000 phimchill
