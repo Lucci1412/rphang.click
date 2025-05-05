@@ -4,9 +4,9 @@ import { HydrateClient, trpc } from "@/trpc/server";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Trang Chủ - Vietube | Xem Phim Mới Miễn Phí",
+  title: "Trang Chủ - PhimChill | Xem Phim Mới Miễn Phí",
   description:
-    "Vietube - cập nhật phim mới nhất, hot nhất. Xem phim chiếu rạp, phim bộ miễn phí chất lượng cao.",
+    "PhimChill - cập nhật phim mới nhất, hot nhất. Xem phim chiếu rạp, phim bộ miễn phí chất lượng cao.",
 };
 
 const Page = async () => {

@@ -33,7 +33,7 @@ const MovieView = () => {
           >
             xemphim123.online
           </Link>
-          <span>nếu không vào được Vietube</span>
+          <span>nếu không vào được PhimChill</span>
         </span>
       </div>
 

@@ -6,21 +6,21 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
+// import { GoogleAnalytics } from "@next/third-parties/google";
+// import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Phim Mới - Xem Phim Trực Tuyến Miễn Phí Tại Vietube",
+  title: "Phim Mới - Xem Phim Trực Tuyến Miễn Phí Tại PhimChill",
   description:
-    "Xem phim trực tuyến miễn phí tại Vietube. Cập nhật liên tục các bộ phim mới nhất, phim hay, phim chiếu rạp, phim bộ, phim lẻ.",
+    "Xem phim trực tuyến miễn phí tại PhimChill. Cập nhật liên tục các bộ phim mới nhất, phim hay, phim chiếu rạp, phim bộ, phim lẻ.",
   icons: {
     icon: "/images/favicon.ico",
     apple: "/images/favicon.ico",
   },
   openGraph: {
     title: "Phim Mới",
-    description: "Vietube - Xem phim trực tuyến miễn phí, chất lượng cao...",
+    description: "PhimChill - Xem phim trực tuyến miễn phí, chất lượng cao...",
 
     url: process.env.NEXT_PUBLIC_SITE_URL,
     images: [
@@ -28,16 +28,16 @@ export const metadata: Metadata = {
         url: "/images/logo_share.jpg",
         width: 1200,
         height: 630,
-        alt: "Vietube Open Graph Image",
+        alt: "PhimChill Open Graph Image",
       },
     ],
-    siteName: "Vietube",
+    siteName: "PhimChill",
     locale: "vi_VN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Phim Mới - Vietube",
-    description: "Xem phim trực tuyến miễn phí, chất lượng cao tại Vietube.",
+    title: "Phim  Mới Chill",
+    description: "Xem phim trực tuyến miễn phí, chất lượng cao tại PhimChill.",
     images: ["/images/logo_share.jpg"],
   },
 };
@@ -48,13 +48,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      {/* <head>
         <Script id="ads-head-script" strategy="beforeInteractive">
           {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9290616,document.createElement('script'))`}
         </Script>
-      </head>
+      </head> */}
       <body className={inter.className}>
-        <GoogleAnalytics gaId="G-5M3PF8BK7M" />
+        {/* <GoogleAnalytics gaId="G-5M3PF8BK7M" /> */}
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>

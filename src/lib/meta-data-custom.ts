@@ -6,7 +6,7 @@ export const metaDataCustom = (
 ) => {
   const desc =
     description ||
-    `Xem ${title} miễn phí tại Vietube. Cập nhật phim hằng ngày nhanh nhất, chất lượng HD.`;
+    `Xem ${title} miễn phí tại PhimChill. Cập nhật phim hằng ngày nhanh nhất, chất lượng HD.`;
 
   return {
     title: `${title}`,

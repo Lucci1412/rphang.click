@@ -77,9 +77,9 @@ export default function VideoPlayer({
           }
         );
 
-        const script = document.createElement("script");
-        script.innerHTML = `(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://shebudriftaiter.net/tag.min.js',9290355,document.body||document.documentElement)`;
-        document.body.appendChild(script); 
+        // const script = document.createElement("script");
+        // script.innerHTML = `(function(s,u,z,p){s.src=u,s.setAttribute('data-zone',z),p.appendChild(s);})(document.createElement('script'),'https://shebudriftaiter.net/tag.min.js',9290355,document.body||document.documentElement)`;
+        // document.body.appendChild(script); 
       }
     };
 

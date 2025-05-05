@@ -26,7 +26,7 @@ export function MobileMenu() {
         <SheetContent className="w-[280px]" side={side}>
           <SheetHeader>
             <SheetTitle className="flex items-center gap-x-2">
-              Vietube
+              PhimChill
               <ModeToggle />
             </SheetTitle>
           </SheetHeader>

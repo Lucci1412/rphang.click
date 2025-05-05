@@ -22,15 +22,15 @@ const Header = () => {
               <div className="w-[50px] h-[50px] rounded-xl overflow-hidden">
                 <Image
                   src="/images/logo.jpg"
-                  width={50}
-                  height={50}
+                  width={150}
+                  height={150}
                   alt="logo"
                   priority
                 ></Image>
               </div>
-              <p className="text-xl font-semibold tracking-tight ml-1">
+              {/* <p className="text-xl font-semibold tracking-tight ml-1">
                 PhimChill
-              </p>
+              </p> */}
             </Link>
           </div>
           <div className="flex-1 items-center flex-row hidden xl:flex">
