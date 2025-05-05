@@ -24,4 +24,4 @@ jobs:
             docker build -t phimchill .
             docker stop phimchill_container || true
             docker rm phimchill_container || true
-            docker run -d --name phimchill_container -p 3000:3000 phimchill
+            docker run -d --name phimchill_container -p 5000:3000 phimchill
