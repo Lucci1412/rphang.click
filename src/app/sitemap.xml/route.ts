@@ -12,7 +12,7 @@ export async function GET() {
   const urls = countries.map((item) => {
     return `
       <url>
-        <loc>${BASE_URL}/phim/${item.slug}</loc>
+        <loc>${BASE_URL}/quoc-gia/${item.slug}</loc>
         <lastmod>${format(new Date(), "yyyy-MM-dd")}</lastmod>
       </url>`;
   });
