@@ -13,7 +13,7 @@ const MovieView = () => {
       >
         <span className="flex flex-wrap justify-center items-center gap-x-1">
           Truy cập
-          <Link
+          {/* <Link
             href="https://xemphim123.click/"
             className="hover:underline font-medium text-blue-700 dark:text-blue-300"
           >
@@ -26,12 +26,12 @@ const MovieView = () => {
           >
             xemphim123.site
           </Link>
-          <span>,</span>
+          <span>,</span> */}
           <Link
-            href="https://xemphim123.online/"
+            href="https://vietube.tokyo/"
             className="hover:underline font-medium text-blue-700 dark:text-blue-300"
           >
-            xemphim123.online
+            vietube.tokyo
           </Link>
           <span>nếu không vào được PhimChill</span>
         </span>

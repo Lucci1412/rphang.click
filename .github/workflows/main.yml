@@ -22,6 +22,7 @@ jobs:
             git checkout main
             git pull
             docker build -t phimchill .
+            docker image prune -f
             docker stop phimchill_container || true
             docker rm phimchill_container || true
             docker run -d --name phimchill_container -p 5000:3000 phimchill
