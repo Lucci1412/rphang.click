@@ -3,18 +3,18 @@ import { NextResponse } from "next/server";
 const BASE_URL =
   process.env.NEXT_PUBLIC_LOCAL_URL || process.env.NEXT_PUBLIC_SITE_URL;
 const listSiteMaps = [
-  {
-    url: `${BASE_URL}/danh-sach/hoat-hinh`,
-  },
-  {
-    url: `${BASE_URL}/danh-sach/phim-bo`,
-  },
-  {
-    url: `${BASE_URL}/danh-sach/phim-le`,
-  },
-  {
-    url: `${BASE_URL}/danh-sach/tv-shows`,
-  },
+  // {
+  //   url: `${BASE_URL}/danh-sach/hoat-hinh`,
+  // },
+  // {
+  //   url: `${BASE_URL}/danh-sach/phim-bo`,
+  // },
+  // {
+  //   url: `${BASE_URL}/danh-sach/phim-le`,
+  // },
+  // {
+  //   url: `${BASE_URL}/danh-sach/tv-shows`,
+  // },
   {
     url: `${BASE_URL}/the-loai/sitemap.xml`,
   },
