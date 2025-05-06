@@ -1,15 +1,15 @@
 // app/sitemap.xml/route.ts
 import { db } from "@/db";
-import { movie } from "@/db/schema";
+import { country } from "@/db/schema";
 import { format } from "date-fns";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  const movies = await db.select().from(movie);
+  const countries = await db.select().from(country);
 
-  const urls = movies.map((item) => {
+  const urls = countries.map((item) => {
     return `
       <url>
         <loc>${BASE_URL}/phim/${item.slug}</loc>
