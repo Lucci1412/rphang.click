@@ -48,11 +48,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <head>
-        <Script id="ads-head-script" strategy="beforeInteractive">
-          {`(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9290616,document.createElement('script'))`}
-        </Script>
-      </head> */}
+      
       <body className={inter.className}>
         {/* <GoogleAnalytics gaId="G-5M3PF8BK7M" /> */}
         <ThemeProvider>
