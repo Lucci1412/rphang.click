@@ -29,7 +29,7 @@ export const EpisodeList = ({ movie, currentEpisode }: EpisodeListProps) => {
         <TabsContent value="all" className="mt-0">
           <div className="flex flex-row flex-wrap  gap-2">
             {movie.episodes.map((episode: any, index) => (
-              <Link key={index} href={`/phim/${movie.slug}/${episode.slug}`}>
+              <Link key={index} href={`/xem-phim/${movie.slug}/${episode.slug}`}>
                 <Button
                   variant={
                     currentEpisode === episode.slug ? "destructive" : "default"

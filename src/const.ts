@@ -1,4 +1,6 @@
 export const PAGE_LIMIT = 20;
+export const PAGE_SITEMAP_LIMIT = 2000;
+
 export const ROLE = {
   ADMIN: 0,
   USER: 1,

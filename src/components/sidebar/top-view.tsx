@@ -68,7 +68,7 @@ const TopViewSuspense = () => {
   return (
     <div className="flex flex-col space-y-3">
       {movies?.map((movie, index) => (
-        <Link key={index} href={`/phim/${movie.slug}`}>
+        <Link key={index} href={`/xem-phim/${movie.slug}`}>
           <Card className="flex flex-row items-center p-2 h-[105px] overflow-hidden  cursor-pointer">
             <div className="w-[70px] h-[90px] overflow-hidden rounded-md">
               <Image

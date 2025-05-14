@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/phim",
+        source: "/xem-phim",
         destination: "/",
         statusCode: 308,
       },
@@ -13,15 +13,15 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/phim",
+        source: "/xem-phim",
         destination: "/movie",
       },
       {
-        source: "/phim/:slug",
+        source: "/xem-phim/:slug",
         destination: "/movie/:slug",
       },
       {
-        source: "/phim/:slug/:episode",
+        source: "/xem-phim/:slug/:episode",
         destination: "/movie/:slug/:episode",
       },
 
@@ -57,7 +57,6 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-     unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

@@ -13,7 +13,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const url = ` ${process.env.NEXT_PUBLIC_SITE_URL}/phim/${slug}`;
+  const url = ` ${process.env.NEXT_PUBLIC_SITE_URL}/xem-phim/${slug}`;
 
   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug });
   const title = `${dataMovie.name} - ${dataMovie.origin_name}`;

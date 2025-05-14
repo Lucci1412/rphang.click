@@ -10,7 +10,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug, episode } = await params;
-  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/phim/${slug}/${episode}`;
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/xem-phim/${slug}/${episode}`;
 
   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug });
   const title = `${dataMovie.name} Tập ${episode}`;

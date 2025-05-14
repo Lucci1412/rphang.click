@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_LOCAL_URL || process.env.NEXT_PUBLIC_SITE_URL;
+  process.env.NEXT_PUBLIC_LOCAL_URL ||
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "http://localhost:3000";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/tim-kiem/", "/profile/"],
     },
-    sitemap: `${BASE_URL}/sitemap_index.xml`,
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

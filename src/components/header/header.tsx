@@ -28,9 +28,9 @@ const Header = () => {
                   priority
                 ></Image>
               </div>
-              {/* <p className="text-xl font-semibold tracking-tight ml-1">
+              <p className="text-xl font-semibold tracking-tight ml-1">
                 PhimChill
-              </p> */}
+              </p>
             </Link>
           </div>
           <div className="flex-1 items-center flex-row hidden xl:flex">

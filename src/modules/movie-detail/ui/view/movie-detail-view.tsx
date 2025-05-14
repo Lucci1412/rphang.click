@@ -48,7 +48,7 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
                 sizes="(max-width: 768px) 50vw, 300px"
                 quality={50}
               />
-              <Link href={`/phim/${movie.slug}/${movie.episodes[0].slug}`}>
+              <Link href={`/xem-phim/${movie.slug}/${movie.episodes[0].slug}`}>
                 <Button className="absolute bottom-6 left-6 right-6 bg-red-600 hover:bg-red-700 text-white gap-2 cursor-pointer">
                   <Play className="h-4 w-4" />
                   Xem Phim

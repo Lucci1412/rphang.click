@@ -27,7 +27,7 @@ const HomeSidebarSuspense = () => {
       <h2 className="text-xl font-bold text-orange-500 mb-4">XEM NHIỀU</h2>
       <div className="space-y-4">
         {movies?.map((movie, index) => (
-          <Link key={index} href={`/phim/${movie.slug}`}>
+          <Link key={index} href={`/xem-phim/${movie.slug}`}>
             <Card className="flex flex-row items-center p-2 h-[105px] overflow-hidden  cursor-pointer">
               <div className="w-[70px] h-[90px] overflow-hidden rounded-md">
                 <Image

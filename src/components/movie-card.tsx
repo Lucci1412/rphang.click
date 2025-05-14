@@ -16,7 +16,7 @@ export default function MovieCard({
   isThumbnailLarge,
 }: MovieCardProps) {
   return (
-    <Link href={`/phim/${movie.slug}`}>
+    <Link href={`/xem-phim/${movie.slug}`}>
       <div
         className={`relative group overflow-hidden rounded-sm shadow-md cursor-pointer ${
           isThumbnailLarge ? "h-[450px]" : isLarge ? "h-[300px]" : "h-[150px]"
