@@ -1,6 +1,22 @@
 import type { NextConfig } from "next";
 // import bundleAnalyzer from "@next/bundle-analyzer";
 const nextConfig: NextConfig = {
+   async headers() {
+    return [
+      {
+        source: '/sitemap_index.xml', // Áp dụng cho đường dẫn sitemap index
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+           
+          },
+         
+        ],
+      },
+    
+    ];
+  },
   async redirects() {
     return [
       {
@@ -57,8 +73,6 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-         unoptimized: true,
-
     remotePatterns: [
       {
         protocol: "https",

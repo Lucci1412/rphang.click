@@ -10,8 +10,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // disallow: ["/tim-kiem/", "/profile/"],
+      disallow: ["/tim-kiem/", "/profile/"],
     },
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${BASE_URL}/sitemap_index.xml`,
   };
 }
