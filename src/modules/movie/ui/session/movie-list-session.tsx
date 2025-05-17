@@ -1,9 +1,9 @@
+// components/NowShowingMovies.tsx
 "use client";
 import { Button } from "@/components/ui/button";
 import MovieCard from "../component/movie-card";
 import { trpc } from "@/trpc/client";
 import Link from "next/link";
-import MovieCardMobile from "../component/movie-card-mobile";
 interface MovieListSessionsProps {
   title: string;
   type: string;
@@ -46,19 +46,14 @@ export default function MovieListSessions({
             </Link>
           </div>
         </div>
-        {/* //mobie */}
-        <div className="md:block grid grid-cols-1 md:grid-cols-5 gap-2">
-          <div className="grid grid-cols-2 gap-2 md:hidden">
-            {movies.slice(0, 10).map((movie) => (
-              <MovieCardMobile quality={20} key={movie.id} movie={movie} />
-            ))}
-          </div>
-        </div>
-        {/* tablet pc */}
-        <div className="hidden md:grid md:grid-cols-5 gap-2">
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          {/* Card lớn bên trái */}
           <div className="md:col-span-2 row-span-2 ">
-            <MovieCard quality={50} movie={movies[0]} isLarge />
+            <MovieCard movie={movies[0]} isLarge />
           </div>
+
+          {/* 3 Card nhỏ bên phải */}
           {movies.slice(1, 6).map((movie) => (
             <MovieCard quality={50} key={movie.id} movie={movie} />
           ))}

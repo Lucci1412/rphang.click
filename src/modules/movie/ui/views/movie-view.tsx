@@ -13,6 +13,20 @@ const MovieView = () => {
       >
         <span className="flex flex-wrap justify-center items-center gap-x-1">
           Truy cập
+          {/* <Link
+            href="https://xemphim123.click/"
+            className="hover:underline font-medium text-blue-700 dark:text-blue-300"
+          >
+            xemphim123.click
+          </Link>
+          <span>,</span>
+          <Link
+            href="https://xemphim123.site/"
+            className="hover:underline font-medium text-blue-700 dark:text-blue-300"
+          >
+            xemphim123.site
+          </Link>
+          <span>,</span> */}
           <Link
             href="https://vietube.tokyo/"
             className="hover:underline font-medium text-blue-700 dark:text-blue-300"
@@ -22,14 +36,8 @@ const MovieView = () => {
           <span>nếu không vào được PhimChill</span>
         </span>
       </div>
-      <div className="hidden xl:flex">
-        <main className="flex w-full min-h-screen flex-col items-center justify-center p-4">
-          <div className=" max-w-7xl">
-            <MovieSlider />
-          </div>
-        </main>
-      </div>
-      {/* <MovieSlider /> */}
+
+      <MovieSlider />
       <MovieListSessions
         url="/danh-sach/phim-le"
         type="single"
