@@ -1,58 +1,53 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
-
-import Image from "next/image";
-import { PlayCircle } from "lucide-react";
 import Link from "next/link";
+import { Star } from "lucide-react";
+import { cn } from "@/lib/utils";
+
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 interface MovieCardProps {
-  isLarge?: boolean;
-  isThumbnailLarge?: boolean;
-  movie: any;
-  isPriority?: boolean;
-  quality?: number;
+  title: string;
+  image: string;
+  year: string;
+  rating: string;
+  className?: string;
+  slug:string
 }
 
 export default function MovieCard({
-  movie,
-  isLarge,
-  isThumbnailLarge,
-  isPriority,
-  quality = 100,
+  title,
+  image,
+  year,
+  rating,
+  className,
+  slug
 }: MovieCardProps) {
   return (
-    <Link href={`/xem-phim/${movie.slug}`}>
-      <div
-        className={`relative group overflow-hidden rounded-lg shadow-md cursor-pointer ${
-          isThumbnailLarge ? "h-[450px]" : isLarge ? "h-[300px]" : "h-[150px]"
-        }`}
-      >
-        {/* Label HD - Vietsub */}
-        <div className="absolute top-2 left-2 text-white bg-red-600 text-xs font-bold py-1 px-2 rounded z-10">
-          {movie.quality}
+    <Link href={`/phim/${slug}-${year}-vietsub`} className={cn(className)}>
+      <Card className="overflow-hidden transition-all hover:scale-105 hover:shadow-lg py-0 gap-0">
+        <div className="aspect-[2/3] relative overflow-hidden">
+          <Image
+            src={image || "/placeholder.svg"}
+            alt={title ??''}
+            className="h-full w-full object-cover"
+            height={450}
+            width={300}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity hover:opacity-100" />
+          <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 opacity-0 transition-opacity hover:opacity-100">
+            <div className="flex items-center gap-1 text-xs sm:text-sm">
+              <Star className="h-3 w-3 fill-primary text-primary" />
+              <span>{rating}</span>
+            </div>
+          </div>
         </div>
-
-        {/* Thumbnail */}
-        <Image
-          src={movie.thumb_url ?? ""}
-          alt={movie.name}
-          width={600}
-          height={400}
-          priority={isPriority ? true : false}
-          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-          quality={quality}
-        />
-
-        {/* Icon Play */}
-        <div className="absolute inset-0 flex items-center justify-center  bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <PlayCircle className="text-yellow-500 w-16 h-16" />
-        </div>
-
-        {/* Tên phim */}
-        <div className="absolute bottom-0 left-0 w-full p-2 bg-black/35 bg-opacity-70 text-white text-sm font-semibold truncate">
-          {movie.name}
-        </div>
-      </div>
+        <CardContent className="p-2 sm:p-3">
+          <h3 className="text-sm sm:text-base font-medium line-clamp-1">
+            {title}
+          </h3>
+          <p className="text-xs text-muted-foreground">{year}</p>
+        </CardContent>
+      </Card>
     </Link>
   );
 }

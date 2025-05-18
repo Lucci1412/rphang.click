@@ -1,26 +1,23 @@
 import type { NextConfig } from "next";
 // import bundleAnalyzer from "@next/bundle-analyzer";
 const nextConfig: NextConfig = {
-   async headers() {
+  async headers() {
     return [
       {
-        source: '/sitemap_index.xml', // Áp dụng cho đường dẫn sitemap index
+        source: "/sitemap_index.xml", // Áp dụng cho đường dẫn sitemap index
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-           
+            key: "Cache-Control",
+            value: "public, max-age=0, must-revalidate",
           },
-         
         ],
       },
-    
     ];
   },
   async redirects() {
     return [
       {
-        source: "/xem-phim",
+        source: "/phim",
         destination: "/",
         statusCode: 308,
       },
@@ -29,26 +26,18 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
-        source: "/xem-phim",
+        source: "/phim",
         destination: "/movie",
       },
       {
-        source: "/xem-phim/:slug",
+        source: "/phim/:slug",
         destination: "/movie/:slug",
       },
       {
-        source: "/xem-phim/:slug/:episode",
-        destination: "/movie/:slug/:episode",
+        source: "/xem/:slug/:episode",
+        destination: "/watch/:slug/:episode",
       },
 
-      {
-        source: "/danh-sach/:slug",
-        destination: "/list/:slug",
-      },
-      {
-        source: "/danh-sach/:slug/page/:pageNumber",
-        destination: "/list/:slug/page/:pageNumber",
-      },
       {
         source: "/the-loai/:slug",
         destination: "/category/:slug",
@@ -73,7 +62,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-     unoptimized: true,
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

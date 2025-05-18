@@ -9,9 +9,10 @@ import {
   movieCountry,
   view,
 } from "@/db/schema";
-import { count, desc, eq } from "drizzle-orm";
+import { count, desc, eq, gte, sql } from "drizzle-orm";
 import { z } from "zod";
 import { PAGE_LIMIT } from "@/const";
+import { subDays, subMonths, subYears } from "date-fns";
 
 export const movieRouter = createTRPCRouter({
   getAll: baseProcedure
@@ -247,39 +248,94 @@ export const movieRouter = createTRPCRouter({
       };
     }),
 
-  getTopView: baseProcedure
+    getTopViewByTime: baseProcedure
     .input(
       z.object({
-        limit: z.number().min(1).max(100).default(PAGE_LIMIT),
+        type: z
+          .enum(["day", "weekly", "monthly", "year", "all"])
+          .default("day"),
+        page: z.number().min(1).default(1),
+        limit: z.number().min(1).max(100).default(10),
       })
     )
     .query(async ({ input }) => {
-      const movies = await db
-        .select()
-        .from(movie)
-        .orderBy(desc(movie.view))
-        .limit(input.limit);
-      if (!movies) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "No movies found" });
+      const { type, page, limit } = input;
+
+      // Tạo thời gian hiện tại theo múi giờ Việt Nam (UTC+7)
+      const now = new Date();
+      const vietnamOffset = 7 * 60; // Múi giờ Việt Nam UTC+7 tính bằng phút
+      const vietnamNow = new Date(
+        now.getTime() + vietnamOffset * 60000 - now.getTimezoneOffset() * 60000
+      );
+
+      let dateCondition: Date | undefined;
+
+      if (type === "day") {
+        dateCondition = subDays(vietnamNow, 1);
+      } else if (type === "weekly") {
+        dateCondition = subDays(vietnamNow, 7);
+      } else if (type === "monthly") {
+        dateCondition = subMonths(vietnamNow, 1);
+      } else if (type === "year") {
+        dateCondition = subYears(vietnamNow, 1);
       }
-      return movies;
-    }),
-  getMovieHot: baseProcedure
-    .input(
-      z.object({
-        limit: z.number().min(1).max(100).default(PAGE_LIMIT),
-      })
-    )
-    .query(async ({ input }) => {
-      const movies = await db
-        .select()
+      // "all" thì không cần dateCondition
+
+      // Chuyển đổi điều kiện thời gian từ múi giờ Việt Nam về UTC cho truy vấn CSDL
+      const dateConditionUTC = dateCondition
+        ? new Date(
+            dateCondition.getTime() -
+              vietnamOffset * 60000 +
+              now.getTimezoneOffset() * 60000
+          )
+        : undefined;
+
+      const whereCondition = dateConditionUTC
+        ? gte(view.createdAt, dateConditionUTC)
+        : undefined;
+
+      const movieViews = await db
+        .select({
+          id: movie.id,
+          name: movie.name,
+          origin: movie.origin_name,
+          thumb_url: movie.thumb_url,
+          slug: movie.slug,
+          content: movie.content,
+          year: movie.year,
+          status: movie.status,
+          createdAt: movie.createdAt,
+          updatedAt: movie.updatedAt,
+          view_count: sql<number>`COUNT(${view.id})`,
+          episode_current: movie.episode_current,
+          time: movie.time,
+          quality: movie.quality,
+        })
         .from(movie)
-        .orderBy(desc(movie.updatedAt), desc(movie.view))
-        .limit(input.limit);
-      if (!movies) {
-        throw new TRPCError({ code: "NOT_FOUND", message: "No movies found" });
-      }
-      return movies;
+        .leftJoin(view, eq(view.movieId, movie.id))
+        .where(whereCondition)
+        .groupBy(movie.id)
+        .having(sql`COUNT(${view.id}) > 0`)
+        .orderBy(sql`COUNT(${view.id}) DESC`)
+        .limit(limit)
+        .offset((page - 1) * limit);
+
+      const totalResult = await db
+        .select({ count: sql<number>`COUNT(DISTINCT ${view.movieId})` })
+        .from(view)
+        .where(whereCondition);
+
+      const total = totalResult[0]?.count || 0;
+
+      return {
+        movies: movieViews,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      };
     }),
 
   createViewByMovieId: baseProcedure

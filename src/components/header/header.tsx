@@ -1,56 +1,44 @@
 import Link from "next/link";
-import Image from "next/image";
-import AuthButton from "./auth-button";
-import Navigation from "./navigation";
-import { ModeToggle } from "./mode-toggle";
-import SearchInput from "./search-input";
 import { trpc } from "@/trpc/server";
-import HeaderBackgroundWrapper from "./header-background-wrapper";
-import { MobileMenu } from "./mobile-menu";
-import { Suspense } from "react";
+import MobileNav from "./mobile-nav";
+import Navigation from "./navigation";
+import SearchInput from "./search-input";
 
 const Header = () => {
   void trpc.category.getAllCategory.prefetch();
   void trpc.country.getAllCountry.prefetch();
 
   return (
-    <div className="flex ">
-      <HeaderBackgroundWrapper>
-        <div className="w-full items-center justify-between flex gap-4 max-w-[1400px]">
-          <div className="items-center flex ">
-            <Link href="/" className="flex items-center mx-auto cursor-pointer">
-              <div className="w-[50px] h-[50px] rounded-xl overflow-hidden">
-                <Image
-                  src="/images/logo.jpg"
-                  width={150}
-                  height={150}
-                  alt="logo"
-                  priority
-                ></Image>
-              </div>
-              <p className="text-xl font-semibold tracking-tight ml-1">
-                PhimChill
-              </p>
-            </Link>
-          </div>
-          <div className="flex-1 items-center flex-row hidden xl:flex">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between max-w-[1200px] mx-auto">
+        <div className="flex items-center gap-4">
+          <MobileNav />
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="inline-block font-bold text-xl md:text-2xl">
+              PhimChill
+            </span>
+          </Link>
+          <nav className="hidden md:flex gap-6">
             <Navigation></Navigation>
-          </div>
-          <div className="flex flex-row items-center">
-            <Suspense fallback={<div>Đang tải...</div>}>
-              <SearchInput />
-            </Suspense>
-            <MobileMenu></MobileMenu>
-          </div>
-          <div className="hidden xl:block">
-            <ModeToggle />
-          </div>
-          <div className=" hidden xl:block">
-            <AuthButton></AuthButton>
-          </div>
+          </nav>
         </div>
-      </HeaderBackgroundWrapper>
-    </div>
+        <div className="flex items-center gap-4">
+          {/* <div className="relative w-full max-w-[200px] hidden sm:block">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search movies..."
+              className="w-full rounded-md pl-8 md:w-[200px] lg:w-[300px]"
+            />
+          </div> */}
+          <SearchInput></SearchInput>
+          {/* <Button variant="ghost" size="icon" className="sm:hidden">
+            <Search className="h-5 w-5" />
+            <span className="sr-only">Search</span>
+          </Button> */}
+        </div>
+      </div>
+    </header>
   );
 };
 

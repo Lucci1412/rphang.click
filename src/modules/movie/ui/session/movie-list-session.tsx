@@ -1,67 +1,22 @@
-// components/NowShowingMovies.tsx
 "use client";
-import { Button } from "@/components/ui/button";
-import MovieCard from "../component/movie-card";
+import React from "react";
+import HeroSession from "./hero-session";
+import MovieList from "../component/movie-list";
 import { trpc } from "@/trpc/client";
-import Link from "next/link";
-interface MovieListSessionsProps {
-  title: string;
-  type: string;
-  url: string;
-}
-export default function MovieListSessions({
-  title,
-  type,
-  url,
-}: MovieListSessionsProps) {
-  const [data] = trpc.movie.getAllByType.useSuspenseQuery({
-    type: type,
+const MovieListSession = () => {
+  const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
+    limit: 10,
     page: 1,
-    limit: 20,
+    type: "day",
   });
-  const { movies } = data;
   return (
-    <section className="py-6 ">
-      <div className="container mx-auto ">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold text-orange-600">
-            {title.toUpperCase()}
-          </h2>
-          <div className=" items-center gap-2 hidden xl:flex">
-            {[2023, 2022, 2021, 2020].map((year) => (
-              <Button
-                key={year}
-                variant="outline"
-                size="sm"
-                className=" border-gray-600"
-              >
-                {year}
-              </Button>
-            ))}
-            <Link href={url ?? ""}>
-              <Button className="cursor-pointer" variant="ghost" size="sm">
-                Xem tất cả
-              </Button>
-            </Link>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
-          {/* Card lớn bên trái */}
-          <div className="md:col-span-2 row-span-2 ">
-            <MovieCard movie={movies[0]} isLarge />
-          </div>
-
-          {/* 3 Card nhỏ bên phải */}
-          {movies.slice(1, 6).map((movie) => (
-            <MovieCard quality={50} key={movie.id} movie={movie} />
-          ))}
-          {movies.slice(7, 13).map((movie) => (
-            <MovieCard quality={50} key={movie.id} movie={movie} />
-          ))}
-        </div>
-      </div>
-    </section>
+    <>
+      <HeroSession movie={dataTopView.movies[0]}></HeroSession>
+      <MovieList title="Top Xem Nhiều" movies={dataTopView.movies}></MovieList>
+      {/* <MovieList></MovieList>
+      <MovieList></MovieList> */}
+    </>
   );
-}
+};
+
+export default MovieListSession;

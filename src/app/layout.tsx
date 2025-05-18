@@ -6,21 +6,20 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
- import { GoogleAnalytics } from "@next/third-parties/google";
+//  import { GoogleAnalytics } from "@next/third-parties/google";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Phim Mới - Xem Phim Trực Tuyến Miễn Phí Tại PhimChill",
-  description:
-    "Xem phim trực tuyến miễn phí tại PhimChill. Cập nhật liên tục các bộ phim mới nhất, phim hay, phim chiếu rạp, phim bộ, phim lẻ.",
+  title: "Phim Chill Online - Xem Phim mới nhanh nhất tại PhimChill",
+  description: "Cập nhật phim nhanh nhẩt, tất cả thể loại ,...",
   icons: {
     icon: "/images/favicon.ico",
     apple: "/images/favicon.ico",
   },
   openGraph: {
-    title: "Phim Mới",
-    description: "PhimChill - Xem phim trực tuyến miễn phí, chất lượng cao...",
+    title: "Phim Chill Online",
+    description: "PhimChill - Xem phim cực nhanh, chất lượng cao...",
 
     url: process.env.NEXT_PUBLIC_SITE_URL,
     images: [
@@ -36,8 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Phim  Mới Chill",
-    description: "Xem phim trực tuyến miễn phí, chất lượng cao tại PhimChill.",
+    title: "Phim Chill Onlinee",
+    description: "PhimChill - Xem phim cực nhanh, chất lượng cao...",
     images: ["/images/logo_share.jpg"],
   },
 };
@@ -48,21 +47,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      
       <body className={inter.className}>
-       <GoogleAnalytics gaId="G-PS2EVMD25F" />
+        {/* <GoogleAnalytics gaId="G-PS2EVMD25F" /> */}
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>
             <Header />
 
-            <div className="w-full max-w-[1400px]  mx-auto">
-              <div className="flex min-h-screen pt-[4rem]">
+            <div className="w-full max-w-[1200px]  mx-auto">
+              <div className="flex min-h-screen">
                 <main className="flex-1 overflow-y-auto px-2.5 xl:px-0 ">
                   {children}
                 </main>
-
-                {/* <Sidebar></Sidebar> */}
               </div>
             </div>
             <Footer />

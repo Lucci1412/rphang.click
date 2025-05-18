@@ -10,28 +10,17 @@ export const metadata = {
 };
 
 const Page = async () => {
+  // void trpc.movie.getTopViewByTime.prefetch({
+  //   limit: 5,
+  // });
   void trpc.movie.getAllByType.prefetch({
-    type: "series",
-    page: 1,
-    limit: 20,
-  });
-  void trpc.movie.getAllByType.prefetch({
-    type: "single",
-    page: 1,
-    limit: 20,
-  });
-  void trpc.movie.getAllByType.prefetch({
-    type: "hoathinh",
-    page: 1,
-    limit: 20,
-  });
-  void trpc.movie.getAllByType.prefetch({
-    type: "tvshows",
-    page: 1,
-    limit: 20,
-  });
-  void trpc.movie.getMovieHot.prefetch({
     limit: 5,
+    type: "single",
+  });
+  void trpc.movie.getTopViewByTime.prefetch({
+    page: 1,
+    type: "day",
+    limit: 10,
   });
   return (
     <HydrateClient>

@@ -30,7 +30,7 @@ const NavigationSuspense = () => {
       {/* Navigation */}
       <nav className="flex   items-center space-x-6">
         <Link
-          href="/danh-sach/phim-le"
+          href="/list/phim-le"
           className="text-foreground hover:text-primary"
         >
           <Button
@@ -42,7 +42,7 @@ const NavigationSuspense = () => {
           </Button>
         </Link>
         <Link
-          href="/danh-sach/phim-bo"
+          href="/list/phim-bo"
           className="text-foreground hover:text-primary"
         >
           <Button
@@ -54,7 +54,7 @@ const NavigationSuspense = () => {
           </Button>
         </Link>
         <Link
-          href="/danh-sach/hoat-hinh"
+          href="/list/hoat-hinh"
           className="text-foreground hover:text-primary"
         >
           <Button
@@ -66,7 +66,7 @@ const NavigationSuspense = () => {
           </Button>
         </Link>
         <Link
-          href="/danh-sach/tv-shows"
+          href="/list/tv-shows"
           className="text-foreground hover:text-primary"
         >
           <Button

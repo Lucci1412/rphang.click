@@ -33,7 +33,7 @@ const MovieListSuspense = ({ type, page }: MovieListProps) => {
   const { movies, pagination } = data;
 
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
+    <div className="max-w-[1200px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
       <div className="container mx-auto py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
           {movies?.map((movie) => (
@@ -52,15 +52,14 @@ const MovieListSuspense = ({ type, page }: MovieListProps) => {
 };
 const MovieListSkeleton = () => {
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
+    <div className="max-w-[1200px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
       <div className="container mx-auto py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
           {Array.from({ length: PAGE_LIMIT })?.map((_, index) => (
             <Skeleton
               key={index}
               className="relative group overflow-hidden rounded-sm shadow-md cursor-pointer h-[150px] "
-            >
-            </Skeleton>
+            ></Skeleton>
           ))}
         </div>
       </div>

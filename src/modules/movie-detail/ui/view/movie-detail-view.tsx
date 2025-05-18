@@ -1,19 +1,14 @@
 "use client";
 import React, { Suspense } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Star, Play } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { trpc } from "@/trpc/client";
-import { MovieDescription } from "../components/description";
-import { EpisodeList } from "../components/episode-list";
 import { MovieDetailOutput } from "../type";
 import NoMoviesFound from "@/components/no-movie-found";
 import { ErrorBoundary } from "react-error-boundary";
 import { Skeleton } from "@/components/ui/skeleton";
+import MovieHeroSession from "../session/movie-hero-session";
+import MovieDetailSession from "../session/movie-detail-session";
+import SimilarSession from "../session/similar-session";
 
 interface MovieDetailViewProps {
   slug: string;
@@ -32,150 +27,11 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
   const movie = data as MovieDetailOutput;
 
   return (
-    <>
-      <div className="container mx-auto py-6 px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-[350px_1fr] gap-8">
-          {/* Movie Poster */}
-
-          <div className="relative w-full aspect-[2/3]">
-            <Card className="overflow-hidden w-full h-full relative">
-              <Image
-                src={movie.thumb_url ?? ""}
-                alt={movie.name}
-                fill
-                priority
-                className="object-cover rounded-md"
-                sizes="(max-width: 768px) 50vw, 300px"
-                quality={50}
-              />
-              <Link href={`/xem-phim/${movie.slug}/${movie.episodes[0].slug}`}>
-                <Button className="absolute bottom-6 left-6 right-6 bg-red-600 hover:bg-red-700 text-white gap-2 cursor-pointer">
-                  <Play className="h-4 w-4" />
-                  Xem Phim
-                </Button>
-              </Link>
-            </Card>
-          </div>
-          {/* Movie Details */}
-          <div className="space-y-6">
-            <div>
-              <h1 className="text-3xl font-bold  mb-1">{movie.name}</h1>
-              <p className="text-xl mb-4">{movie.origin_name}</p>
-
-              <div className="flex items-center gap-2 mb-6">
-                <div className="flex items-center  px-3 py-1 rounded-md">
-                  <span className="text-3xl font-bold text-amber-600 mr-2">
-                    {movie.vote_average}
-                  </span>
-                  <div className="flex">
-                    {Array.from({ length: 10 }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-5 w-5 ${
-                          i < Math.round(movie.vote_average ?? 0)
-                            ? "fill-amber-600 text-amber-600"
-                            : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <span className="text-zinc-500 text-sm">
-                  {movie.vote_count} lượt đánh giá
-                </span>
-              </div>
-
-              <div className="space-y-3">
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Diễn viên:</span>
-                  <div className="flex flex-wrap gap-x-1">
-                    {movie.actor.slice(0, 5).map((name, index) => (
-                      <span key={index} className="flex items-center">
-                        {name}
-
-                        {index < movie.actor.slice(0, 5).length - 1 && (
-                          <span className="ml-1">,</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Thể loại:</span>
-                  <div className="flex flex-wrap gap-x-1">
-                    {movie?.categories.map((item, index) => (
-                      <span key={index} className="flex items-center">
-                        <Link
-                          href={`/the-loai/${item.category.slug}`}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {item.category.name}
-                        </Link>
-                        {index < movie.categories.length - 1 && (
-                          <span className="ml-1">,</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Trạng thái:</span>
-                  <Link href="#" className="text-red-600 font-medium">
-                    {movie.episode_current}
-                  </Link>
-                </div>
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Quốc gia:</span>
-                  <div className="flex flex-wrap gap-x-1">
-                    {movie.countries.slice(0, 5).map((item, index) => (
-                      <span key={index} className="flex items-center">
-                        <Link
-                          href={`/quoc-gia/${item.country.slug}`}
-                          className="text-blue-600 hover:underline"
-                        >
-                          {item.country.name}
-                        </Link>
-                        {index < movie.countries.slice(0, 5).length - 1 && (
-                          <span className="ml-1">,</span>
-                        )}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Thời lượng:</span>
-                  <span>{movie.time}</span>
-                </div>
-
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Lượt xem:</span>
-                  <span>{movie.view}</span>
-                </div>
-
-                <div className="flex items-center">
-                  <span className="font-semibold min-w-30">Năm xuất bản: </span>
-                  <span>{movie.year}</span>
-                </div>
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h2 className="text-xl font-bold mb-3">Nội dung phim</h2>
-              <div className="text-zinc-700">
-                <MovieDescription
-                  description={movie.content ?? ""}
-                ></MovieDescription>
-              </div>
-            </div>
-          </div>
-        </div>
-        <EpisodeList movie={movie}></EpisodeList>
-      </div>
-    </>
+    <div className="min-h-screen !bg-background">
+      <MovieHeroSession movie={movie}></MovieHeroSession>
+      <MovieDetailSession movie={movie}></MovieDetailSession>
+      <SimilarSession />
+    </div>
   );
 };
 

@@ -1,30 +1,32 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
-    <footer className="bg-zinc-800 text-center text-white py-6">
-      <div className="flex flex-col items-center space-y-2">
-        <div className="flex items-center space-x-2 text-3xl font-bold">
-          <span className="text-red-600">Phim Chill</span>
-          <span>
-            TV<sup>+</sup>
-          </span>
-        </div>
-
-        <p className="text-sm text-gray-300">
-          Copyright © 2025 Phim Chill All Rights Reserved.
+    <footer className="border-t py-6 md:py-0">
+      <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+        <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+          © 2025 PhimChill. All rights reserved.
         </p>
-        <p className="text-sm text-gray-300">
-          Email:{" "}
-          <a
-            href="mailto:cubebaothu@gmail.com"
-            className="underline hover:text-white"
+        <div className="flex gap-4">
+          <Link
+            href="#"
+            className="text-sm text-muted-foreground hover:underline"
           >
-            cubebaothu@gmail.com
-          </a>
-        </p>
-        <p className="text-sm text-gray-300 text-center max-w-xl">
-          Đối với các vấn đề về bản quyền, vui lòng liên hệ qua email này. Chúng
-          tôi sẽ tiến hành gỡ bỏ nội dung đó một cách nhanh chóng.
-        </p>
+            Terms of Service
+          </Link>
+          <Link
+            href="#"
+            className="text-sm text-muted-foreground hover:underline"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="#"
+            className="text-sm text-muted-foreground hover:underline"
+          >
+            Contact Us
+          </Link>
+        </div>
       </div>
     </footer>
   );

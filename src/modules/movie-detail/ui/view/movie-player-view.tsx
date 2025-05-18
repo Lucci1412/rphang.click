@@ -1,13 +1,13 @@
 "use client";
 import { trpc } from "@/trpc/client";
-import { EpisodeList } from "../components/episode-list";
-// import VideoPlayer from "../components/movie-player";
 import { ErrorBoundary } from "react-error-boundary";
 import { MovieDetailOutput } from "../type";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import LazyVideoPlayerWrapper from "../components/lazy-video-player-wrapper";
 import NoMoviesFound from "@/components/no-movie-found";
+import SimilarSession from "../session/similar-session";
+import MovieDetailSession from "../session/movie-detail-session";
 
 interface MoviePlayerViewProps {
   slug: string;
@@ -37,7 +37,7 @@ const MoviePlayerViewSuspense = ({ slug, episodeId }: MoviePlayerViewProps) => {
     <div className="p-4">
       <div>
         <h1 className="text-xl font-bold mb-2">
-          {movie.name} - Tập {videoData?.name}
+          {movie.name} {movie.year} - Tập {videoData?.name}
         </h1>
       </div>
       <LazyVideoPlayerWrapper
@@ -45,8 +45,8 @@ const MoviePlayerViewSuspense = ({ slug, episodeId }: MoviePlayerViewProps) => {
         movieId={movie.id}
         poster={movie.thumb_url ?? ""}
       />
-      {/* <VideoPlayer src={videoData?.linkM3u8 ?? ""} movieId={movie.id} /> */}
-      <EpisodeList currentEpisode={episodeId} movie={movie}></EpisodeList>
+      <MovieDetailSession movie={movie}></MovieDetailSession>
+      <SimilarSession />
     </div>
   );
 };
