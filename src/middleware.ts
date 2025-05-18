@@ -33,7 +33,6 @@ export async function middleware(request: NextRequest) {
   }
   // Nếu route nằm trong protect
   if (protectedRoutes.some((route) => pathname.startsWith(route))) {
-    console.log(token);
     if (!token) {
       // return NextResponse.redirect(new URL("/dang-nhap", request.url));
       return NextResponse.redirect(new URL("/", request.url));

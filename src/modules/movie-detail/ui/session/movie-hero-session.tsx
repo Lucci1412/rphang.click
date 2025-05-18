@@ -47,7 +47,7 @@ const MovieHeroSession = ({ movie }: Props) => {
                 <span>2014</span>
                 <span className="text-muted-foreground">•</span>
                 <span className="flex items-center">
-                  <Clock className="mr-1 h-3 w-3 sm:h-4 sm:w-4" /> 169 min
+                  <Clock className="mr-1 h-3 w-3 sm:h-4 sm:w-4" /> {movie.time}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1 sm:gap-2">
@@ -69,7 +69,7 @@ const MovieHeroSession = ({ movie }: Props) => {
                   <Link
                     href={`/xem/${movie.slug}-${movie.year}-vietsub/tap-${movie.episodes[0].slug}`}
                   >
-                    <Play className="h-3 w-3 sm:h-4 sm:w-4" /> Xem
+                    <Play className="h-3 w-3 sm:h-4 sm:w-4" /> Xem Phim
                   </Link>
                 </Button>
                 {/* <Button

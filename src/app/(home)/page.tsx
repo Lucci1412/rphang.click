@@ -4,18 +4,14 @@ import { HydrateClient, trpc } from "@/trpc/server";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Trang Chủ - PhimChill | Xem Phim Mới Miễn Phí",
+  title: "PhimChill | Phim Mới | Phim VietSub | Phim Online",
   description:
-    "PhimChill - cập nhật phim mới nhất, hot nhất. Xem phim chiếu rạp, phim bộ miễn phí chất lượng cao.",
+    "PhimChill - Phim mới nhanh nhẩt",
 };
 
 const Page = async () => {
-  // void trpc.movie.getTopViewByTime.prefetch({
-  //   limit: 5,
-  // });
-  void trpc.movie.getAllByType.prefetch({
-    limit: 5,
-    type: "single",
+  void trpc.movie.getTopNew.prefetch({
+    limit: 10,
   });
   void trpc.movie.getTopViewByTime.prefetch({
     page: 1,

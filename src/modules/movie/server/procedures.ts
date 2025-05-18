@@ -248,7 +248,7 @@ export const movieRouter = createTRPCRouter({
       };
     }),
 
-    getTopViewByTime: baseProcedure
+  getTopViewByTime: baseProcedure
     .input(
       z.object({
         type: z
@@ -337,22 +337,52 @@ export const movieRouter = createTRPCRouter({
         },
       };
     }),
+  getTopNew: baseProcedure
+    .input(
+      z.object({
+        limit: z.number().min(1).max(100).default(10),
+      })
+    )
+    .query(async ({ input }) => {
+      const { limit } = input;
 
+      const movieViews = await db
+        .select({
+          id: movie.id,
+          name: movie.name,
+          origin: movie.origin_name,
+          thumb_url: movie.thumb_url,
+          slug: movie.slug,
+          content: movie.content,
+          year: movie.year,
+          status: movie.status,
+          createdAt: movie.createdAt,
+          updatedAt: movie.updatedAt,
+          episode_current: movie.episode_current,
+          time: movie.time,
+          quality: movie.quality,
+        })
+        .from(movie)
+        .orderBy(desc(movie.updatedAt))
+        .limit(limit);
+
+      return {
+        movies: movieViews,
+      };
+    }),
   createViewByMovieId: baseProcedure
     .input(
       z.object({
         movieId: z.string(),
-        timeWatched:z.number()
+        timeWatched: z.number(),
       })
     )
     .mutation(async ({ input }) => {
       await db.insert(view).values({
         movieId: input.movieId,
-        timeWatched:input.timeWatched
+        timeWatched: input.timeWatched,
       });
 
       return { success: true };
     }),
-
-  
 });

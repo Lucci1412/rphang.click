@@ -17,7 +17,7 @@ export const EpisodeList = ({ movie, currentEpisode }: EpisodeListProps) => {
             {movie.episodes.map((episode: any, index) => (
               <Link
                 key={index}
-                href={`/xem/${movie.slug}/tap-${episode.slug}`}
+                href={`/xem/${movie.slug}-${movie.year}-vietsub/tap-${episode.slug}`}
               >
                 <Button
                   variant={

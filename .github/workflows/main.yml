@@ -1,4 +1,4 @@
-name: Deployment PhimChill
+name: Deployment PhimChillOnline
 
 on:
   push:
@@ -17,12 +17,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd desktop/phimchill
+            cd desktop/phimchill_online
             git fetch origin
             git checkout main
             git pull
-            docker build -t phimchill .
+            docker build -t phimchill_online .
             docker image prune -f
-            docker stop phimchill_container || true
-            docker rm phimchill_container || true
-            docker run -d --name phimchill_container -p 5000:3000 phimchill
+            docker stop phimchill_online_container || true
+            docker rm phimchill_online_container || true
+            docker run -d --name phimchill_online_container -p 5001:3000 phimchill_online

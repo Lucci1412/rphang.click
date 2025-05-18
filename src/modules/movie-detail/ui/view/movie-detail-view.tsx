@@ -25,7 +25,7 @@ export const MovieDetailView = ({ slug }: MovieDetailViewProps) => {
 const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
   const [data] = trpc.movieDetail.getBySlug.useSuspenseQuery({ slug });
   const movie = data as MovieDetailOutput;
-
+ 
   return (
     <div className="min-h-screen !bg-background">
       <MovieHeroSession movie={movie}></MovieHeroSession>

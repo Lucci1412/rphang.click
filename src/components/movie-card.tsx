@@ -44,7 +44,7 @@ export default function MovieCard({
 
         {/* Tên phim */}
         <div className="absolute bottom-0 left-0 w-full p-2 bg-black/35 bg-opacity-70 text-white text-sm font-semibold truncate">
-          {movie.name}
+          {movie.name} {movie.year}
         </div>
       </div>
     </Link>

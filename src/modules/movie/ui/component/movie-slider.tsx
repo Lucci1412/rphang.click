@@ -33,7 +33,6 @@ export default function MovieSlider({movies}:Props) {
   };
 
 
-
   return (
     <div className="relative">
       <div

@@ -11,7 +11,7 @@ import { Metadata } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Phim Chill Online - Xem Phim mới nhanh nhất tại PhimChill",
+  title: "Phim Chill Phim Mới - Xem Phim mới nhanh nhất tại PhimChill",
   description: "Cập nhật phim nhanh nhẩt, tất cả thể loại ,...",
   icons: {
     icon: "/images/favicon.ico",

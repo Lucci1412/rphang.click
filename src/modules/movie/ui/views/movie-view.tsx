@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import HeroSession from "../session/hero-session";
+// import HeroSession from "../session/hero-session";
 import MovieListSession from "../session/movie-list-session";
 
 const MovieView = () => {
