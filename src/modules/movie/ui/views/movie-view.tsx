@@ -14,7 +14,7 @@ const MovieView = () => {
         <span className="flex flex-wrap justify-center items-center gap-x-1">
           Truy cập
           <Link
-            href="https://www.phimchill.fun/"
+            href="https://phimchill.fun/"
             className="hover:underline font-medium text-blue-700 dark:text-blue-300"
           >
             phimchill.fun
