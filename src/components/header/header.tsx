@@ -3,6 +3,7 @@ import { trpc } from "@/trpc/server";
 import MobileNav from "./mobile-nav";
 import Navigation from "./navigation";
 import SearchInput from "./search-input";
+import { Suspense } from "react";
 
 const Header = () => {
   void trpc.category.getAllCategory.prefetch();
@@ -31,7 +32,10 @@ const Header = () => {
               className="w-full rounded-md pl-8 md:w-[200px] lg:w-[300px]"
             />
           </div> */}
-          <SearchInput></SearchInput>
+          <Suspense fallback={<div>Đang tải...</div>}>
+            <SearchInput></SearchInput>
+          </Suspense>
+
           {/* <Button variant="ghost" size="icon" className="sm:hidden">
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
