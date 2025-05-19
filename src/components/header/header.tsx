@@ -19,7 +19,7 @@ const Header = () => {
 
             <div className="w-[250px] h-[250px] rounded-xl overflow-hidden hidden xl:flex">
               <Image
-                src="/images/logo.jpg"
+                src="/images/logo1.jpg"
                 width={250}
                 height={250}
                 alt="logo"
