@@ -7,7 +7,7 @@ const MovieListSession = () => {
   const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
     limit: 10,
     page: 1,
-    type: "day",
+    type: "monthly",
   });
   const [dataNew] = trpc.movie.getTopNew.useSuspenseQuery({
     limit: 10,

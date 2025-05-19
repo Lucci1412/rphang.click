@@ -7,7 +7,7 @@ const SimilarSession = () => {
   const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
     limit: 10,
     page: 1,
-    type: "day",
+    type: "monthly",
   });
   return (
     <section className="py-6 sm:py-8">

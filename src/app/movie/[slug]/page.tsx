@@ -17,8 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const url = ` ${process.env.NEXT_PUBLIC_SITE_URL}/phim/${slug}`;
   const parts = slug.split("-");
-  const yearIndex = parts.findIndex((part) => /^\d{4}$/.test(part));
-  const name = parts.slice(0, yearIndex).join("-");
+  const name = parts.slice(0, -2).join("-");
   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug: name });
   const title = `Phim ${dataMovie.name} ${dataMovie.year} FulL VietSub + Thuyết Minh `;
   let limitedContent = dataMovie.content ?? "";
@@ -38,12 +37,11 @@ export async function generateMetadata({
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
   const parts = slug.split("-");
-  const yearIndex = parts.findIndex((part) => /^\d{4}$/.test(part));
-  const name = parts.slice(0, yearIndex).join("-");
+  const name = parts.slice(0, -2).join("-");
   void trpc.movieDetail.getBySlug.prefetch({ slug: name });
   void trpc.movie.getTopViewByTime.prefetch({
     page: 1,
-    type: "day",
+    type: "monthly",
     limit: 10,
   });
   return (

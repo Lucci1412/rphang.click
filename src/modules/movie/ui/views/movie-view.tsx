@@ -7,9 +7,7 @@ const MovieView = () => {
   return (
     <div className="flex flex-col">
       <div
-        className="border rounded-xl p-4 mt-4 text-sm text-center shadow-sm
-  border-blue-200 bg-blue-50 text-blue-900
-  dark:border-white/10 dark:bg-blue-950/40 dark:text-white/90"
+        className="border rounded-xl p-4 mt-4 text-sm text-center shadow-sm border-blue-200 bg-blue-50 text-blue-900 dark:border-white/10 dark:bg-blue-950/40 dark:text-white/90"
       >
         <span className="flex flex-wrap justify-center items-center gap-x-1">
           Truy cập

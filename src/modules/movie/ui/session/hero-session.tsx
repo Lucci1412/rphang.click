@@ -7,9 +7,9 @@ import Link from "next/link";
 import React from "react";
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  movie:any
+  movie: any;
 }
-const HeroSession = ({ movie }:Props) => {
+const HeroSession = ({ movie }: Props) => {
   return (
     <div>
       <section className="relative h-[50vh] md:h-[70vh] overflow-hidden">
@@ -17,12 +17,12 @@ const HeroSession = ({ movie }:Props) => {
           <Image
             src={movie.thumb_url ?? ""}
             alt="Featured movie"
-            className="h-full w-full object-cover"
+            className="h-full w-screen object-cover"
             fill
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background to-background/20" />
         </div>
-        <div className="container relative z-10 flex h-full flex-col justify-center space-y-3 md:space-y-5 pt-16">
+        <div className="container relative z-10 flex h-full flex-col justify-center space-y-3 md:space-y-5 pt-16 max-w-[1400px] mx-auto">
           <h1 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             {movie.name} {movie.year}
           </h1>

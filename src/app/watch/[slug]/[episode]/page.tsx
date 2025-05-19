@@ -12,8 +12,7 @@ export async function generateMetadata({
   const { slug, episode } = await params;
   const maxLength = 200;
   const parts = slug.split("-");
-  const yearIndex = parts.findIndex((part) => /^\d{4}$/.test(part));
-  const name = parts.slice(0, yearIndex).join("-");
+  const name = parts.slice(0, -2).join("-");
   const partsEpisode = episode.split("-");
   const episodeName = partsEpisode[1];
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}/xem/${slug}/${episode}`;
@@ -35,14 +34,13 @@ export async function generateMetadata({
 const Page = async ({ params }: PageProps) => {
   const { episode, slug } = await params;
   const parts = slug.split("-");
-  const yearIndex = parts.findIndex((part) => /^\d{4}$/.test(part));
-  const name = parts.slice(0, yearIndex).join("-");
+  const name = parts.slice(0, -2).join("-");
   const partsEpisode = episode.split("-");
   const episodeName = partsEpisode[1];
   void trpc.movieDetail.getBySlug.prefetch({ slug: name });
   void trpc.movie.getTopViewByTime.prefetch({
     page: 1,
-    type: "day",
+    type: "monthly",
     limit: 10,
   });
   return <MoviePlayerView slug={name} episodeId={episodeName} />;
