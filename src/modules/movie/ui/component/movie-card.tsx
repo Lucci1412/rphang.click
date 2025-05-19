@@ -11,7 +11,7 @@ interface MovieCardProps {
   year: string;
   rating: string;
   className?: string;
-  slug:string
+  slug: string;
 }
 
 export default function MovieCard({
@@ -20,7 +20,7 @@ export default function MovieCard({
   year,
   rating,
   className,
-  slug
+  slug,
 }: MovieCardProps) {
   return (
     <Link href={`/phim/${slug}-${year}-vietsub`} className={cn(className)}>
@@ -28,10 +28,11 @@ export default function MovieCard({
         <div className="aspect-[2/3] relative overflow-hidden">
           <Image
             src={image || "/placeholder.svg"}
-            alt={title ??''}
+            alt={title ?? ""}
             className="h-full w-full object-cover"
             height={450}
             width={300}
+            quality={50}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity hover:opacity-100" />
           <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 opacity-0 transition-opacity hover:opacity-100">

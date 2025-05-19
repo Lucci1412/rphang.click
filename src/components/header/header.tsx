@@ -17,7 +17,7 @@ const Header = () => {
           <MobileNav />
           <Link href="/" className="flex  space-x-2 items-center justify-center">
 
-            <div className="w-[250px] h-[250px] rounded-xl overflow-hidden">
+            <div className="w-[250px] h-[250px] rounded-xl overflow-hidden hidden xl:flex">
               <Image
                 src="/images/logo.jpg"
                 width={250}
