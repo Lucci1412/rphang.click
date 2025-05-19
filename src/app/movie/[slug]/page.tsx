@@ -21,7 +21,7 @@ export async function generateMetadata({
   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug: name });
   const title = `Phim ${dataMovie.name} ${dataMovie.year} FulL VietSub + Thuyết Minh `;
   let limitedContent = dataMovie.content ?? "";
-
+  
   if (Number(limitedContent.length) > maxLength) {
     limitedContent = limitedContent.slice(0, maxLength) + "...";
   }

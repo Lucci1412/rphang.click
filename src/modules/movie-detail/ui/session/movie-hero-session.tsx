@@ -1,3 +1,4 @@
+'use client'
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, Play, Star } from "lucide-react";
@@ -11,7 +12,6 @@ interface Props {
 }
 const MovieHeroSession = ({ movie }: Props) => {
   return (
-    <div>
       <section className="relative mt-2 sm:mt-4 h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -20,6 +20,7 @@ const MovieHeroSession = ({ movie }: Props) => {
             className="h-full w-full object-cover"
             width={1080}
             height={1920}
+            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
         </div>
@@ -32,6 +33,7 @@ const MovieHeroSession = ({ movie }: Props) => {
                 className="h-[300px] w-[200px] lg:h-[450px] lg:w-[300px] rounded-lg object-cover shadow-lg"
                 width={300}
                 height={450}
+                priority
               />
             </div>
             <div className="space-y-2 sm:space-y-4">
@@ -72,19 +74,12 @@ const MovieHeroSession = ({ movie }: Props) => {
                     <Play className="h-3 w-3 sm:h-4 sm:w-4" /> Xem Phim
                   </Link>
                 </Button>
-                {/* <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-1 sm:gap-2 sm:size-lg"
-                >
-                  <Plus className="h-3 w-3 sm:h-4 sm:w-4" /> Add
-                </Button> */}
+                
               </div>
             </div>
           </div>
         </div>
       </section>
-    </div>
   );
 };
 
