@@ -20,7 +20,6 @@ const MovieHeroSession = ({ movie }: Props) => {
             className="h-full w-full object-cover"
             width={1080}
             height={1920}
-            priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
         </div>
