@@ -17,8 +17,8 @@ const HeroSession = ({ movie }: Props) => {
           <Image
             src={movie.thumb_url ?? ""}
             alt="Featured movie"
-            className="h-full w-screen object-cover"
             fill
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background to-background/20" />
         </div>
