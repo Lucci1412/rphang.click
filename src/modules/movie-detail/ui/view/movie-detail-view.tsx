@@ -1,5 +1,4 @@
 "use client";
-import React, { Suspense } from "react";
 import { trpc } from "@/trpc/client";
 import { MovieDetailOutput } from "../type";
 import NoMoviesFound from "@/components/no-movie-found";
@@ -8,8 +7,10 @@ import MovieHeroSession from "../session/movie-hero-session";
 import MovieDetailSession from "../session/movie-detail-session";
 // import SimilarSession from "../session/similar-session";
 import MovieHeroSkeleton from "../components/skeleton/movie-hero-skeleton";
-import DetailSkeleton from "../components/skeleton/movie-detail-skeleton";
-import SimilarSkeleton from "../components/skeleton/similar-skeleton";
+// import DetailSkeleton from "../components/skeleton/movie-detail-skeleton";
+// import SimilarSkeleton from "../components/skeleton/similar-skeleton";
+import SimilarSession from "../session/similar-session";
+import { Suspense } from "react";
 
 interface MovieDetailViewProps {
   slug: string;
@@ -26,12 +27,11 @@ export const MovieDetailView = ({ slug }: MovieDetailViewProps) => {
 const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
   const [data] = trpc.movieDetail.getBySlug.useSuspenseQuery({ slug });
   const movie = data as MovieDetailOutput;
-  console.log('test');
   return (
-    <div className="min-h-screen !bg-background">
+    <div className="min-h-screen bg-background">
       <MovieHeroSession movie={movie}></MovieHeroSession>
       <MovieDetailSession movie={movie}></MovieDetailSession>
-      {/* <SimilarSession /> */}
+      <SimilarSession />
     </div>
   );
 };
@@ -39,10 +39,10 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
 export default MovieDetailView;
 const MovieDetailSkeleton = () => {
   return (
-    <div className="min-h-screen !bg-background">
+    <div className="min-h-screen bg-background">
       <MovieHeroSkeleton></MovieHeroSkeleton>
-      <DetailSkeleton></DetailSkeleton>
-      <SimilarSkeleton></SimilarSkeleton>
+      {/* <DetailSkeleton></DetailSkeleton>
+      <SimilarSkeleton></SimilarSkeleton> */}
     </div>
   );
 };
