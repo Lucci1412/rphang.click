@@ -6,7 +6,7 @@ import NoMoviesFound from "@/components/no-movie-found";
 import { ErrorBoundary } from "react-error-boundary";
 import MovieHeroSession from "../session/movie-hero-session";
 import MovieDetailSession from "../session/movie-detail-session";
-import SimilarSession from "../session/similar-session";
+// import SimilarSession from "../session/similar-session";
 import MovieHeroSkeleton from "../components/skeleton/movie-hero-skeleton";
 import DetailSkeleton from "../components/skeleton/movie-detail-skeleton";
 import SimilarSkeleton from "../components/skeleton/similar-skeleton";
@@ -31,7 +31,7 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
     <div className="min-h-screen !bg-background">
       <MovieHeroSession movie={movie}></MovieHeroSession>
       <MovieDetailSession movie={movie}></MovieDetailSession>
-      <SimilarSession />
+      {/* <SimilarSession /> */}
     </div>
   );
 };
