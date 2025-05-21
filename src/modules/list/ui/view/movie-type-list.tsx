@@ -6,7 +6,7 @@ import { PaginationCustom } from "@/components/pagingnation";
 import { PAGE_LIMIT } from "@/const";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import MovieCard from "@/components/movie-card";
+import MovieCard from "@/modules/movie/ui/component/movie-card";
 
 interface MovieListProps {
   type: string;
@@ -33,11 +33,18 @@ const MovieListSuspense = ({ type, page }: MovieListProps) => {
   const { movies, pagination } = data;
 
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
+    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-4 pt-2.5  ">
       <div className="container mx-auto py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
           {movies?.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
+            <MovieCard
+              key={movie.id}
+              title={movie.name}
+              image={movie.thumb_url ?? ""}
+              year={String(movie.year)}
+              rating={String(movie.vote_average)}
+              slug={String(movie.slug)}
+            />
           ))}
         </div>
 
@@ -52,13 +59,13 @@ const MovieListSuspense = ({ type, page }: MovieListProps) => {
 };
 const MovieListSkeleton = () => {
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-6 pt-2.5  ">
+    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-4 pt-2.5  ">
       <div className="container mx-auto py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
           {Array.from({ length: PAGE_LIMIT })?.map((_, index) => (
             <Skeleton
               key={index}
-              className="relative group overflow-hidden rounded-sm shadow-md cursor-pointer h-[150px] "
+              className="relative group overflow-hidden rounded-sm shadow-md cursor-pointer h-[280px] "
             ></Skeleton>
           ))}
         </div>
