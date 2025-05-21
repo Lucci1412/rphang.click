@@ -19,6 +19,7 @@ const HeroSession = ({ movie }: Props) => {
             alt="Featured movie"
             fill
             className="object-cover"
+            priority={true}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background to-background/20" />
         </div>

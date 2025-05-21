@@ -192,6 +192,7 @@ export const movieRouter = createTRPCRouter({
         type: z.string().optional(),
         page: z.number().min(1).default(1),
         limit: z.number().min(1).max(100).default(20),
+        year: z.string().optional(),
       })
     )
     .query(async ({ input }) => {
@@ -224,7 +225,7 @@ export const movieRouter = createTRPCRouter({
         .where(whereCondition)
         .limit(limit)
         .offset(offset)
-        .orderBy(desc(movie.updatedAt));
+        .orderBy(desc(movie.year), desc(movie.updatedAt));
 
       // Lấy tổng số phim để tính tổng số trang
       const totalMovies = await db

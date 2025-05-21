@@ -17,6 +17,21 @@ const Page = async () => {
     type: "monthly",
     limit: 10,
   });
+  void trpc.movie.getAllByType.prefetch({
+    page: 1,
+    limit: 10,
+    type:'phim-le'
+  });
+  void trpc.movie.getAllByType.prefetch({
+    page: 1,
+    limit: 10,
+    type:'phim-bo'
+  });
+   void trpc.movie.getAllByType.prefetch({
+    page: 1,
+    limit: 10,
+    type:'hoat-hinh'
+  });
   return (
     <HydrateClient>
       <MovieView></MovieView>
