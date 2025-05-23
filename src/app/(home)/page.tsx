@@ -14,7 +14,7 @@ const Page = async () => {
   });
   void trpc.movie.getTopViewByTime.prefetch({
     page: 1,
-    type: "monthly",
+    type: "weekly",
     limit: 10,
   });
   void trpc.movie.getAllByType.prefetch({

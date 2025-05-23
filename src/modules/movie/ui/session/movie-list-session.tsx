@@ -7,7 +7,7 @@ const MovieListSession = () => {
   const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
     limit: 10,
     page: 1,
-    type: "monthly",
+    type: "weekly",
   });
   // const [dataNew] = trpc.movie.getTopNew.useSuspenseQuery({
   //   limit: 10,
@@ -22,7 +22,7 @@ const MovieListSession = () => {
     page: 1,
     type: "phim-bo",
   });
-   const [dataHoatHinh] = trpc.movie.getAllByType.useSuspenseQuery({
+  const [dataHoatHinh] = trpc.movie.getAllByType.useSuspenseQuery({
     limit: 10,
     page: 1,
     type: "hoat-hinh",
@@ -40,7 +40,7 @@ const MovieListSession = () => {
         title="Phim Bộ Mới Cập Nhật"
         movies={dataSeries.movies}
       ></MovieList>
-       <MovieList
+      <MovieList
         title="Phim Hoạt Hình Mới Cập Nhật"
         movies={dataHoatHinh.movies}
       ></MovieList>
