@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
         destination: "/movie/:slug",
       },
       {
+        source: "/danh-muc/:slug",
+        destination: "/list/:slug",
+      },
+      {
         source: "/xem/:slug/:episode",
         destination: "/watch/:slug/:episode",
       },

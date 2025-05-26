@@ -1,17 +1,14 @@
 "use client";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import LoginRegisterDialog from "@/modules/auth/ui/components/auth";
-import React, { useState } from "react";
+import React from "react";
 import { toast } from "sonner";
 
 const AuthButton = () => {
-  const user = false;
-  const [open, setOpen] = useState(false);
+  // const user = false;
+  // const [open, setOpen] = useState(false);
 
   return (
     <>
-      {user ? (
+      {/* {user ? (
         <div className="flex flex-row items-center">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -34,7 +31,30 @@ const AuthButton = () => {
         </Button>
       )}
 
-      <LoginRegisterDialog open={open} onOpenChange={setOpen} />
+      <LoginRegisterDialog open={open} onOpenChange={setOpen} /> */}
+      <div className="flex items-center space-x-2 text-xs">
+        <span
+          className="text-gray-400 cursor-pointer"
+          onClick={() => {
+            toast.info("Chức năng đang bảo trì! ", {
+              position: "top-center",
+            });
+          }}
+        >
+          Đăng nhập
+        </span>
+        <span className="text-gray-400">|</span>
+        <span
+          className="text-gray-400 cursor-pointer"
+          onClick={() => {
+            toast.info("Chức năng đang bảo trì! ", {
+              position: "top-center",
+            });
+          }}
+        >
+          Đăng ký
+        </span>
+      </div>
     </>
   );
 };

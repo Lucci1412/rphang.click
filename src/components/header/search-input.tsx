@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Loader2, Search, X } from "lucide-react";
+import { Search } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -42,12 +42,6 @@ const SearchInput = () => {
     }
   };
 
-  const handleClear = () => {
-    if (!isLoading) {
-      setKeyword("");
-    }
-  };
-
   useEffect(() => {
     if (pathname === "/tim-kiem") {
       const currentQuery = searchParams.get("q");
@@ -60,49 +54,23 @@ const SearchInput = () => {
   return (
     <div className="relative">
       <div className="flex items-center">
-        <div
-          className={`relative overflow-hidden transition-all duration-300 ease-in-out ${
-            isSearchExpanded
-              ? "w-[150px] sm:w-[200px] md:w-[250px] xl:w-[300px] ml-2 opacity-100"
-              : "w-0 opacity-0"
-          }`}
-        >
-          <Input
-            type="text"
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Tìm kiếm phim..."
-            className="bg-background border-border rounded-full h-9 pr-8 focus-visible:outline-none focus-visible:ring-0 focus-visible:border-primary"
-            disabled={isLoading}
-          />
-          {keyword && (
-            <div className="absolute right-2 top-1/2 -translate-y-1/2">
-              {isLoading ? (
-                <Loader2 className="h-4 w-4 text-muted-foreground animate-spin" />
-              ) : (
-                <X
-                  className="h-4 w-4 text-muted-foreground cursor-pointer hover:text-foreground"
-                  onClick={handleClear}
-                />
-              )}
-            </div>
-          )}
-        </div>
-        <button
-          onClick={() => {
-            if (!isSearchExpanded) {
-              setIsSearchExpanded(true);
-            } else {
-              handleSearch();
-            }
-          }}
+        <Input
+          type="text"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Tìm kiếm phim..."
+          className="w-72 bg-gray-700 border-gray-600 text-white placeholder-gray-400 text-sm"
           disabled={isLoading}
-          className="flex items-center justify-center h-9 w-9 rounded-full bg-muted/30 hover:bg-muted/50 transition-all cursor-pointer"
-          title="Search"
-        >
-          <Search className="h-4 w-4 text-muted-foreground" />
-        </button>
+        />
+        {keyword && (
+          <Search
+            onClick={() => {
+              handleSearch();
+            }}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 cursor-pointer"
+          />
+        )}
       </div>
     </div>
   );

@@ -6,7 +6,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-  import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Sidebar from "@/components/sidebar";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -53,14 +54,17 @@ export default function RootLayout({
           <Toaster />
           <TRPCProvider>
             <Header />
-
-            <div className="w-full   mx-auto">
-              <div className="flex min-h-screen">
-                <main className="flex-1 overflow-y-auto px-2.5 xl:px-0 ">
-                  {children}
-                </main>
+            <div className="min-h-screen bg-gray-900 text-white">
+              <div className="container mx-auto px-4 py-4">
+                <div className="flex gap-6">
+                  <div className="flex-1">{children}</div>
+                  <div className="hidden md:block">
+                    <Sidebar></Sidebar>
+                  </div>
+                </div>
               </div>
             </div>
+
             <Footer />
           </TRPCProvider>
         </ThemeProvider>

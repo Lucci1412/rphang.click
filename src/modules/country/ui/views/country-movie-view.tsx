@@ -7,7 +7,7 @@ import { PAGE_LIMIT } from "@/const";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import NoMoviesFound from "@/components/no-movie-found";
-import MovieCard from "@/modules/movie/ui/component/movie-card";
+import MovieCard from "@/components/movie-card";
 
 interface MovieListProps {
   country: string;
@@ -38,16 +38,9 @@ const MovieListSuspense = ({ country, page }: MovieListProps) => {
   return (
     <div className="max-w-[1400px] mx-auto flex flex-col gap-y-4 pt-2.5  ">
       <div className="container mx-auto py-8">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
-          {movies?.map((movie) => (
-            <MovieCard
-              key={movie.id}
-              title={movie.name}
-              image={movie.thumb_url ?? ""}
-              year={String(movie.year)}
-              rating={String(movie.vote_average)}
-              slug={String(movie.slug)}
-            />
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
+          {movies?.map((movie,index) => (
+           <MovieCard key={index} movie={movie}></MovieCard>
           ))}
         </div>
 
@@ -64,7 +57,7 @@ const MovieListSkeleton = () => {
   return (
     <div className="max-w-[1400px] mx-auto flex flex-col gap-y-4 pt-2.5  ">
       <div className="container mx-auto py-8">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
           {Array.from({ length: PAGE_LIMIT })?.map((_, index) => (
             <Skeleton
               key={index}

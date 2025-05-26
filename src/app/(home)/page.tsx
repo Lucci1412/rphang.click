@@ -10,26 +10,26 @@ export const metadata = {
 
 const Page = async () => {
   void trpc.movie.getTopNew.prefetch({
-    limit: 10,
+    limit: 16,
   });
   void trpc.movie.getTopViewByTime.prefetch({
     page: 1,
     type: "weekly",
-    limit: 10,
+    limit: 16,
   });
   void trpc.movie.getAllByType.prefetch({
     page: 1,
-    limit: 10,
+    limit: 16,
     type:'phim-le'
   });
   void trpc.movie.getAllByType.prefetch({
     page: 1,
-    limit: 10,
+    limit: 16,
     type:'phim-bo'
   });
    void trpc.movie.getAllByType.prefetch({
     page: 1,
-    limit: 10,
+    limit: 16,
     type:'hoat-hinh'
   });
   return (

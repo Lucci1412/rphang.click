@@ -10,10 +10,10 @@ interface EpisodeListProps {
 }
 export const EpisodeList = ({ movie, currentEpisode }: EpisodeListProps) => {
   return (
-    <div className="w-full  p-4 rounded-lg">
+    <div className="w-full ">
       <Tabs defaultValue="all" className="w-full">
         <TabsContent value="all" className="mt-0">
-          <div className="flex flex-row flex-wrap  gap-2">
+          <div className="flex flex-row flex-wrap  gap-2.5">
             {movie.episodes.map((episode: any, index) => (
               <Link
                 key={index}
@@ -23,10 +23,10 @@ export const EpisodeList = ({ movie, currentEpisode }: EpisodeListProps) => {
                   variant={
                     currentEpisode === episode.slug ? "destructive" : "default"
                   }
-                  className={`w-full h-10 font-medium cursor-pointer
+                  className={`w-full h-9 font-medium cursor-pointer
                 }`}
                 >
-                  <div className="min-w-[60px] flex justify-center m-auto ">
+                  <div className="min-w-[55px] flex justify-center m-auto ">
                     Tập {episode.name}
                   </div>
                 </Button>

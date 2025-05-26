@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -28,65 +27,44 @@ const NavigationSuspense = () => {
   return (
     <>
       {/* Navigation */}
-      <nav className="flex   items-center space-x-6">
+      <nav className="flex items-center space-x-6">
         <Link
-          href="/list/phim-le"
-          className="text-foreground hover:text-primary"
+          href="/"
+          className="text-orange-500 hover:text-orange-400 font-medium text-sm"
         >
-          <Button
-            variant="ghost"
-            size="default"
-            className="flex items-center gap-1 px-2 cursor-pointer text-md"
-          >
-            Phim lẻ
-          </Button>
+          Trang chủ
         </Link>
         <Link
-          href="/list/phim-bo"
-          className="text-foreground hover:text-primary"
+          href="/danh-muc/phim-le"
+          className="text-gray-300 hover:text-white font-medium text-sm"
         >
-          <Button
-            variant="ghost"
-            size="default"
-            className="flex items-center gap-1 px-2 cursor-pointer text-md"
-          >
-            Phim bộ
-          </Button>
+          Phim lẻ
         </Link>
         <Link
-          href="/list/hoat-hinh"
-          className="text-foreground hover:text-primary"
+          href="/danh-muc/phim-bo"
+          className="text-gray-300 hover:text-white font-medium text-sm"
         >
-          <Button
-            variant="ghost"
-            size="default"
-            className="flex items-center gap-1 px-2 cursor-pointer text-md"
-          >
-            Hoạt Hình
-          </Button>
+          Phim bộ
         </Link>
         <Link
-          href="/list/tv-shows"
-          className="text-foreground hover:text-primary"
+          href="/danh-muc/hoat-hinh"
+          className="text-gray-300 hover:text-white font-medium text-sm"
         >
-          <Button
-            variant="ghost"
-            size="default"
-            className="flex items-center gap-1 px-2 cursor-pointer text-md"
-          >
-            TV Show
-          </Button>
+          Anime
+        </Link>
+        <Link
+          href="/danh-muc/tv-shows"
+          className="text-gray-300 hover:text-white text-sm"
+        >
+          TV Show
         </Link>
 
         {/* Thể Loại Dropdown */}
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="flex items-center gap-1 px-2 cursor-pointer"
-            >
+            <div className="flex items-center gap-1 px-2 cursor-pointer text-gray-300 hover:text-white font-medium text-sm">
               Thể Loại <ChevronDown className="h-4 w-4" />
-            </Button>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"
@@ -105,12 +83,9 @@ const NavigationSuspense = () => {
         {/* Quốc Gia Dropdown */}
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              className="flex items-center gap-1 px-2 cursor-pointer"
-            >
+            <div className="flex items-center gap-1 px-2 cursor-pointer text-gray-300 hover:text-white font-medium text-sm">
               Quốc Gia <ChevronDown className="h-4 w-4" />
-            </Button>
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             align="end"

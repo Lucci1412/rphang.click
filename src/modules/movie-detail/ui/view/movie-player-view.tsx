@@ -6,8 +6,7 @@ import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import LazyVideoPlayerWrapper from "../components/lazy-video-player-wrapper";
 import NoMoviesFound from "@/components/no-movie-found";
-import SimilarSession from "../session/similar-session";
-import MovieDetailSession from "../session/movie-detail-session";
+import MovieDetail from "../components/movie-detail";
 
 interface MoviePlayerViewProps {
   slug: string;
@@ -45,8 +44,7 @@ const MoviePlayerViewSuspense = ({ slug, episodeId }: MoviePlayerViewProps) => {
         movieId={movie.id}
         poster={movie.thumb_url ?? ""}
       />
-      <MovieDetailSession movie={movie}></MovieDetailSession>
-      <SimilarSession />
+      <MovieDetail movie={movie}></MovieDetail>
     </div>
   );
 };
