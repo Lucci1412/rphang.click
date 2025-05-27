@@ -37,6 +37,13 @@ export default function MobileNav() {
             >
               Trang chủ
             </Link>
+             <Link
+              href="/chieurap"
+              className="text-base font-medium text-primary"
+              onClick={() => setOpen(false)}
+            >
+              Chiếu rạp
+            </Link>
             <Link
               href="/list/phim-le"
               className="text-base font-medium text-muted-foreground transition-colors hover:text-primary"

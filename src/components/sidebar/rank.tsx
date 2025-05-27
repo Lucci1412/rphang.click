@@ -6,7 +6,7 @@ import React from "react";
 
 const Rank = () => {
   const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
-    limit: 10,
+    limit: 5,
     page: 1,
     type: "all",
   });
@@ -18,7 +18,15 @@ const Rank = () => {
       <div className="space-y-2">
         {dataTopView.movies.map((movie, index) => (
           <Link
-            href={`/phim/${movie.slug}-${movie.year}-vietsub`}
+            href={`/${
+              movie.type == "single"
+                ? "phim-le"
+                : movie.type == "series"
+                ? "phim-bo"
+                : movie.type == "hoathinh"
+                ? "hoat-hinh"
+                : "tvshow"
+            }/${movie.slug}-${movie.quality}-${movie.year}`}
             key={movie.id}
             className="flex items-center space-x-3 p-2 bg-gray-700 rounded hover:bg-gray-600 cursor-pointer transition-colors"
           >

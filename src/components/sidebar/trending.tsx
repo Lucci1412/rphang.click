@@ -7,7 +7,7 @@ import React from "react";
 
 const Trending = () => {
   const [dataTopView] = trpc.movie.getTopViewByTime.useSuspenseQuery({
-    limit: 10,
+    limit: 5,
     page: 1,
     type: "weekly",
   });
@@ -19,7 +19,15 @@ const Trending = () => {
       <div className="space-y-3">
         {dataTopView.movies.map((movie, index) => (
           <Link
-            href={`/phim/${movie.slug}-${movie.year}-vietsub`}
+            href={`/${
+              movie.type == "single"
+                ? "phim-le"
+                : movie.type == "series"
+                ? "phim-bo"
+                : movie.type == "hoathinh"
+                ? "hoat-hinh"
+                : "tvshow"
+            }/${movie.slug}-${movie.quality}-${movie.year}`}
             key={movie.id}
             className="flex items-center space-x-3 p-2 bg-gray-700 rounded-lg hover:bg-gray-600 cursor-pointer transition-colors"
           >

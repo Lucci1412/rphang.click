@@ -4,7 +4,7 @@ import { MovieDetailOutput } from "../type";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, Globe, Play, Star, Users } from "lucide-react";
+import { Calendar, Clock, Play, Star, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import MovieDetail from "../components/movie-detail";
 import { useRouter } from "next/navigation";
@@ -31,25 +31,26 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent " />
-          <div className="container mx-auto px-4 h-full flex items-end pb-8 relative !z-40">
+          <div className="container mx-auto  h-full flex items-end pb-8 relative ">
             <div className="flex gap-6 w-full">
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 hidden md:flex">
                 <Image
                   src={movie.thumb_url || "/placeholder.svg"}
                   alt={movie.origin_name ?? ""}
                   className="w-48 h-72 object-cover rounded-lg shadow-2xl"
                   width={300}
                   height={300}
+                  quality={50}
                 />
               </div>
               <div className="flex-1 space-y-4">
-                <div>
-                  <h1 className="text-4xl font-bold text-white mb-2">
+                <div className="ml-4">
+                  <h1 className="flex  text-4xl font-bold text-white mb-2">
                     {movie.name} {movie.year} {movie.quality}
                   </h1>
-                  <p className="text-xl text-gray-300">{movie.origin_name}</p>
+                  <p className="text-xl  text-gray-300">{movie.origin_name}</p>
                 </div>
-                <div className="flex items-center space-x-4">
+                <div className="flex ml-4 items-center space-x-4">
                   <Badge className="bg-red-600 text-white">
                     {movie.quality}
                   </Badge>
@@ -60,7 +61,7 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
                     {movie.status}
                   </Badge>
                 </div>
-                <div className="flex items-center space-x-6 text-sm text-gray-300">
+                <div className="flex ml-4 items-center space-x-6 text-sm text-gray-300">
                   <div className="flex items-center">
                     <Star className="w-4 h-4 mr-1 fill-yellow-400 text-yellow-400" />
                     <span className="text-yellow-400 font-bold">
@@ -76,25 +77,27 @@ const MovieDetailViewSuspense = ({ slug }: MovieDetailViewProps) => {
                     <Clock className="w-4 h-4 mr-1" />
                     <span>{movie.time}</span>
                   </div>
-                  <div className="flex items-center">
+                  {/* <div className="flex items-center">
                     <Globe className="w-4 h-4 mr-1" />
                     <span>Trung Quốc</span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center">
                     <Users className="w-4 h-4 mr-1" />
-                    <span>{movie.view} lượt xem</span>
+                    <span>{movie.view}</span>
                   </div>
                 </div>
-                {movie.actor.slice(0, 4).map((g, index) => (
-                  <Badge
-                    key={index}
-                    variant="outline"
-                    className="text-gray-300 border-gray-600"
-                  >
-                    {g}
-                  </Badge>
-                ))}
-                <div className="flex items-center space-x-4">
+                <div className="ml-4">
+                  {movie.actor.slice(0, 4).map((g, index) => (
+                    <Badge
+                      key={index}
+                      variant="outline"
+                      className="text-gray-300 border-gray-600"
+                    >
+                      {g}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="flex ml-4 items-center space-x-4">
                   <Button
                     size="lg"
                     className="bg-orange-600 hover:bg-orange-700 text-white px-8"

@@ -311,6 +311,7 @@ export const movieRouter = createTRPCRouter({
           time: movie.time,
           quality: movie.quality,
           vote_average: movie.vote_average,
+          type: movie.type,
         })
         .from(movie)
         .leftJoin(view, eq(view.movieId, movie.id))
@@ -371,6 +372,56 @@ export const movieRouter = createTRPCRouter({
         movies: movieViews,
       };
     }),
+  getChỉeuRap: baseProcedure
+    .input(
+      z.object({
+        limit: z.number().min(1).max(100).default(10),
+        page: z.number().min(1).default(1),
+      })
+    )
+    .query(async ({ input }) => {
+      const { limit, page } = input;
+
+      const movieViews = await db
+        .select({
+          id: movie.id,
+          name: movie.name,
+          origin: movie.origin_name,
+          thumb_url: movie.thumb_url,
+          slug: movie.slug,
+          content: movie.content,
+          year: movie.year,
+          status: movie.status,
+          createdAt: movie.createdAt,
+          updatedAt: movie.updatedAt,
+          episode_current: movie.episode_current,
+          time: movie.time,
+          quality: movie.quality,
+          chieurap: movie.chieurap,
+        })
+        .from(movie)
+        .where(and(eq(movie.chieurap, true)))
+        .orderBy(desc(movie.year), desc(movie.updatedAt))
+        .limit(limit)
+        .offset((page - 1) * limit);
+
+      const totalResult = await db
+        .select({ count: count() })
+        .from(movie)
+        .where(and(eq(movie.chieurap, true)));
+
+      const total = totalResult[0]?.count || 0;
+
+      return {
+        movies: movieViews,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      };
+    }),
   getTopTrailer: baseProcedure
     .input(
       z.object({
@@ -396,9 +447,10 @@ export const movieRouter = createTRPCRouter({
           time: movie.time,
           quality: movie.quality,
           vote_average: movie.vote_average,
+          type: movie.type,
         })
         .from(movie)
-         .where(and(eq(movie.status, "trailer"), eq(movie.year, 2025)))
+        .where(and(eq(movie.status, "trailer"), eq(movie.year, 2025)))
         .orderBy(desc(movie.updatedAt))
         .limit(limit);
 

@@ -10,7 +10,8 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { ErrorBoundary } from "react-error-boundary";
-
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 export const Navigation = () => {
   return (
     <React.Suspense fallback={<div>...loading</div>}>
@@ -23,41 +24,34 @@ export const Navigation = () => {
 const NavigationSuspense = () => {
   const { data: categories = [] } = trpc.category.getAllCategory.useQuery();
   const { data: countries = [] } = trpc.country.getAllCountry.useQuery();
+  const pathname = usePathname();
 
+  const navItems = [
+    { href: "/", label: "Trang chủ" },
+    { href: "/danh-muc/phim-le", label: "Phim lẻ" },
+    { href: "/danh-muc/phim-bo", label: "Phim bộ" },
+    { href: "/danh-muc/hoat-hinh", label: "Anime" },
+    { href: "/danh-muc/tv-shows", label: "TV Show" },
+     { href: "/chieurap", label: "Chiếu rạp" },
+  ];
   return (
     <>
       {/* Navigation */}
       <nav className="flex items-center space-x-6">
-        <Link
-          href="/"
-          className="text-orange-500 hover:text-orange-400 font-medium text-sm"
-        >
-          Trang chủ
-        </Link>
-        <Link
-          href="/danh-muc/phim-le"
-          className="text-gray-300 hover:text-white font-medium text-sm"
-        >
-          Phim lẻ
-        </Link>
-        <Link
-          href="/danh-muc/phim-bo"
-          className="text-gray-300 hover:text-white font-medium text-sm"
-        >
-          Phim bộ
-        </Link>
-        <Link
-          href="/danh-muc/hoat-hinh"
-          className="text-gray-300 hover:text-white font-medium text-sm"
-        >
-          Anime
-        </Link>
-        <Link
-          href="/danh-muc/tv-shows"
-          className="text-gray-300 hover:text-white text-sm"
-        >
-          TV Show
-        </Link>
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={clsx(
+              "font-medium text-sm",
+              pathname === item.href
+                ? "text-orange-500 hover:text-orange-400"
+                : "text-gray-300 hover:text-white"
+            )}
+          >
+            {item.label}
+          </Link>
+        ))}
 
         {/* Thể Loại Dropdown */}
         <DropdownMenu modal={false}>

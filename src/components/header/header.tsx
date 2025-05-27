@@ -1,11 +1,11 @@
 import { trpc } from "@/trpc/server";
 
-
-import AuthButton from "./auth-button";
+//  import AuthButton from "./auth-button";
 import Navigation from "./navigation";
 import Link from "next/link";
 import { Suspense } from "react";
 import SearchInput from "./search-input";
+import MobileNav from "./mobile-nav";
 const Header = () => {
   void trpc.category.getAllCategory.prefetch();
   void trpc.country.getAllCountry.prefetch();
@@ -15,17 +15,18 @@ const Header = () => {
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-8">
-            <Link href="/" className="flex items-center space-x-2">
+            <MobileNav></MobileNav>
+            <Link href="/" className=" items-center space-x-2 hidden md:flex">
               <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center">
                 <span className="text-white font-bold text-sm">P</span>
               </div>
-              <span className="text-xl font-bold text-orange-500">motphim</span>
+              <span className="text-xl font-bold text-orange-500">PhimChillMoi</span>
               <span className="text-xs text-white bg-orange-500 px-1 rounded">
                 VIP
               </span>
             </Link>
 
-            <nav className="hidden md:flex gap-6">
+            <nav className="hidden xl:flex gap-6">
               <Navigation></Navigation>
             </nav>
           </div>
@@ -43,7 +44,7 @@ const Header = () => {
                 <SearchInput></SearchInput>
               </Suspense>
             </div>
-            <AuthButton></AuthButton>
+            {/* <AuthButton></AuthButton> */}
           </div>
         </div>
       </div>

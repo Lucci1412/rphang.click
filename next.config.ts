@@ -38,8 +38,24 @@ const nextConfig: NextConfig = {
         destination: "/list/:slug",
       },
       {
+        source: "/phim-bo/:slug",
+        destination: "/series/:slug",
+      },
+      {
+        source: "/hoat-hinh/:slug",
+        destination: "/hoathinh/:slug",
+      },
+      {
+        source: "/tvshow/:slug",
+        destination: "/tvshow/:slug",
+      },
+      {
+        source: "/phim-le/:slug",
+        destination: "/single/:slug",
+      },
+      {
         source: "/xem/:slug/:episode",
-        destination: "/watch/:slug/:episode",
+        destination: "/play/:slug/:episode",
       },
 
       {

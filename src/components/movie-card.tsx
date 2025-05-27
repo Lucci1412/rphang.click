@@ -12,12 +12,18 @@ const MovieCard = ({ movie }: Props) => {
   return (
     <Link
       key={movie.id}
-      href={`/phim/${movie.slug}-${movie.year}-vietsub`}
-      // className={cn(className)}
+      href={`/${
+        movie.type == "single"
+          ? "phim-le"
+          : movie.type == "series"
+          ? "phim-bo"
+          : movie.type == "hoathinh"
+          ? "hoat-hinh"
+          : "tvshow"
+      }/${movie.slug}-${movie.quality}-${movie.year}`}
     >
       <Card
         className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-all duration-200 cursor-pointer group py-0 rounded-sm"
-        // onClick={() => router.push(`/movie/${movie.id}`)}
       >
         <CardContent className="p-0">
           <div className="relative">
@@ -27,6 +33,7 @@ const MovieCard = ({ movie }: Props) => {
               src={movie.thumb_url || "/placeholder.svg"}
               className="w-full h-60 object-cover rounded-sm"
               alt={movie.name}
+              quality={50}
             />
             <div className="absolute top-1 left-1">
               <Badge

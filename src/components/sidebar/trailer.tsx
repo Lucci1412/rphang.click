@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { trpc } from "@/trpc/client";
 import { Calendar, Star } from "lucide-react";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import React from "react";
 
 const Trailer = () => {
   const [dataTopView] = trpc.movie.getTopTrailer.useSuspenseQuery({
-    limit: 10,
+    limit: 5,
   });
   return (
     <div className="bg-gray-800 rounded-lg p-4">
@@ -17,7 +17,15 @@ const Trailer = () => {
       <div className="space-y-3">
         {dataTopView.movies.map((movie) => (
           <Link
-           href={`/phim/${movie.slug}-${movie.year}-vietsub`}
+            href={`/${
+              movie.type == "single"
+                ? "phim-le"
+                : movie.type == "series"
+                ? "phim-bo"
+                : movie.type == "hoathinh"
+                ? "hoat-hinh"
+                : "tvshow"
+            }/${movie.slug}-${movie.quality}-${movie.year}`}
             key={movie.id}
             className="flex items-center space-x-3 p-2 bg-gray-700 rounded-lg hover:bg-gray-600 cursor-pointer transition-colors"
           >

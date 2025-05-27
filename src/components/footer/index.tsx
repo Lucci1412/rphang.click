@@ -29,6 +29,11 @@ export default function Footer() {
                 TV Shows hay
               </Link>
             </li>
+            <li>
+              <Link href="/chieurap" className="hover:underline">
+                Phim Chiếu Rạp
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -97,7 +102,7 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-          <p className="mt-4 text-sm">© 2025 PhimChill.Online</p>
+          <p className="mt-4 text-sm">© 2025 PhimChillMoi.xyz</p>
         </div>
       </div>
     </footer>

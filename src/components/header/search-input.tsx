@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 const SearchInput = () => {
-  const [isSearchExpanded, setIsSearchExpanded] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -22,7 +21,6 @@ const SearchInput = () => {
     if (isLoading) return;
 
     const trimmedKeyword = keyword.trim();
-    if (!trimmedKeyword) return setIsSearchExpanded(false);
 
     const currentQuery = searchParams.get("q");
     const encodedKeyword = encodeURIComponent(trimmedKeyword);
@@ -60,7 +58,7 @@ const SearchInput = () => {
           onChange={(e) => setKeyword(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Tìm kiếm phim..."
-          className="w-72 bg-gray-700 border-gray-600 text-white placeholder-gray-400 text-sm"
+          className="w-40  md:w-72 bg-gray-700 border-gray-600 text-white placeholder-gray-400 text-sm"
           disabled={isLoading}
         />
         {keyword && (
