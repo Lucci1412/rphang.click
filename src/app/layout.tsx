@@ -6,7 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-// import { GoogleAnalytics } from "@next/third-parties/google";
+ import { GoogleAnalytics } from "@next/third-parties/google";
 import Sidebar from "@/components/sidebar";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        {/* <GoogleAnalytics gaId="G-183NRHP9FH" /> */}
+        <GoogleAnalytics gaId="G-2Y7422LTWL" />
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>

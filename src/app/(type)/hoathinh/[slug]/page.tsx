@@ -16,8 +16,8 @@ export async function generateMetadata({
   const parts = slug.split("-");
   const name = parts.slice(0, -2).join("-");
   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug: name });
-  const title = ` ${dataMovie.origin_name} ${dataMovie.year} HD Vietsub + ThuyetMinh`;
-  const url = ` ${process.env.NEXT_PUBLIC_SITE_URL}/hoat-hinh/${dataMovie.slug}-${dataMovie.quality}-${dataMovie.year}`;
+  const title = `${dataMovie.origin_name} ${dataMovie.year} HD Vietsub + ThuyetMinh`;
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/hoat-hinh/${dataMovie.slug}-${dataMovie.quality}-${dataMovie.year}`;
   const content = `Phim ${dataMovie.name} (${
     dataMovie.origin_name ?? ""
   }) phát hành năm ${
