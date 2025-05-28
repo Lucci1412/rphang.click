@@ -12,7 +12,6 @@ interface PageProps {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const maxLength = 200;
 
   const { slug, typeName } = await params;
   const parts = slug.split("-");
@@ -21,16 +20,20 @@ export async function generateMetadata({
   const title = `Xem ${dataMovie.origin_name} ${dataMovie.year} HD `;
   const url = ` ${process.env.NEXT_PUBLIC_SITE_URL}/${typeName}/${dataMovie.slug}-${dataMovie.quality}-${dataMovie.year}`;
 
-  let limitedContent = dataMovie.content ?? "";
-
-  if (Number(limitedContent.length) > maxLength) {
-    limitedContent = limitedContent.slice(0, maxLength) + "...";
-  }
+  const content = `Phim ${dataMovie.name} (${
+    dataMovie.origin_name ?? ""
+  }) phát hành năm ${
+    dataMovie.year
+  }, thể loại phim lẻ, diễn viên: ${dataMovie.actor
+    .slice(0, 3)
+    .join(", ")}, chất lượng ${dataMovie.quality ?? "HD"}, ngôn ngữ ${
+    dataMovie.lang ?? "không rõ"
+  }.`;
 
   return metaDataCustom(
     url,
     title,
-    limitedContent,
+    content,
     dataMovie.thumb_url ?? "/images/logo_share.jpg"
   );
 }

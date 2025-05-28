@@ -3,10 +3,6 @@ import { HydrateClient, trpc } from "@/trpc/server";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = {
-  title: "PhimChill | Phim Mới | Phim VietSub | Phim Online",
-  description: "PhimChill - Phim mới nhanh nhẩt",
-};
 
 const Page = async () => {
   void trpc.movie.getTopNew.prefetch({

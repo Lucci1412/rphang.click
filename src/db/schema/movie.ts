@@ -17,7 +17,6 @@ import { movieCategory } from "./movie_category";
 
 export const movie = pgTable("movie", {
   id: varchar("id", { length: 30 }).primaryKey().notNull(),
-  // ophimId: varchar("ophim_id", { length: 50 }).notNull(),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
   serverName: varchar("server_name", { length: 30 }),
