@@ -4,10 +4,8 @@ import { movieRouter } from "@/modules/movie/server/procedures";
 import { categoryRouter } from "@/modules/category/server/procedures";
 import { countryRouter } from "@/modules/country/server/procedures";
 import { searchRouter } from "@/modules/search/server/procedures";
-import { authRouter } from "@/modules/auth/server/procedures";
 
 export const appRouter = createTRPCRouter({
-  auth:authRouter,
   movieDetail: movieDetailRouter,
   movie: movieRouter,
   category: categoryRouter,

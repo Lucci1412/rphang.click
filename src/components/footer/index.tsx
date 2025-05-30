@@ -1,109 +1,18 @@
-import Link from "next/link";
-
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-6">
-      <div className="container max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-        {/* Phim Mới */}
-        <div>
-          <h4 className="text-orange-500 font-bold mb-2">Phim Mới</h4>
-          <ul>
-            {/* <li><Link href="#" className="hover:underline">Phim chiếu rạp</Link></li> */}
-            <li>
-              <Link href="/list/phim-le" className="hover:underline">
-                Phim lẻ hay
-              </Link>
-            </li>
-            <li>
-              <Link href="/list/phim-bo" className="hover:underline">
-                Phim bộ hay
-              </Link>
-            </li>
-            <li>
-              <Link href="/list/hoat-hinh" className="hover:underline">
-                Phim hoạt hình hay
-              </Link>
-            </li>
-            <li>
-              <Link href="/list/tv-shows" className="hover:underline">
-                TV Shows hay
-              </Link>
-            </li>
-            <li>
-              <Link href="/chieurap" className="hover:underline">
-                Phim Chiếu Rạp
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Phim Hay */}
-        <div>
-          <h4 className="text-orange-500 font-bold mb-2">Phim Hay</h4>
-          <ul>
-            <li>
-              <Link href="/quoc-gia/au-my" className="hover:underline">
-                Phim Mỹ
-              </Link>
-            </li>
-            <li>
-              <Link href="/quoc-gia/han-quoc" className="hover:underline">
-                Phim Hàn Quốc
-              </Link>
-            </li>
-            <li>
-              <Link href="/quoc-gia/trung-quoc" className="hover:underline">
-                Phim Trung Quốc
-              </Link>
-            </li>
-            <li>
-              <Link href="/quoc-gia/viet-nam" className="hover:underline">
-                Phim Việt Nam
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Phim Hot */}
-        <div>
-          <h4 className="text-orange-500 font-bold mb-2">Phim Hay</h4>
-          <ul>
-            <li>
-              <Link href="/the-loai/hanh-dong" className="hover:underline">
-                Phim Hành Động
-              </Link>
-            </li>
-            <li>
-              <Link href="/the-loai/co-trang" className="hover:underline">
-                Phim Cổ Trang
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/the-loai/tinh-cam" className="hover:underline">
-                Phim Tình Cảm
-              </Link>
-            </li>
-            <li>
-              <Link href="/the-loai/kinh-di" className="hover:underline">
-                Phim Ma Kinh Dị
-              </Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Thông tin */}
-        <div>
-          <h4 className="text-orange-500 font-bold mb-2">Thông tin</h4>
-          <ul>
-            <li>
-              <Link href="/sitemap_index.xml" className="hover:underline">
-                Sitemap
-              </Link>
-            </li>
-          </ul>
-          <p className="mt-4 text-sm">© 2025 PhimChillMoi.xyz</p>
-        </div>
+    <footer className="bg-gray-800 border-t border-gray-700 py-6">
+      <div className="container mx-auto px-4 text-sm text-gray-400">
+        <p className="mb-4">
+          VLXX.COM là web xem <span className="text-red-500">phim sex</span>{" "}
+          dành cho người lớn trên 18 tuổi, giúp bạn giải trí, thỏa mãn sinh lý,
+          dưới 18 tuổi xin vui lòng quay ra.
+        </p>
+        <p>
+          Trang web này không đăng tải clip sex Việt Nam, video sex trẻ em. Nội
+          dung phim được dẫn dụng từ trước, hoàn toàn không có thật, người xem
+          tuyệt đối không bắt chước hành động trong phim, tránh vi phạm pháp
+          luật.
+        </p>
       </div>
     </footer>
   );

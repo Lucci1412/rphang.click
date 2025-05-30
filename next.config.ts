@@ -86,7 +86,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "img.ophim.live",
+        hostname: "img.xxvnapi.com",
       },
     ],
   },

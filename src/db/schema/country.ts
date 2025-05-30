@@ -4,10 +4,10 @@ import { relations } from "drizzle-orm";
 
 export const country = pgTable("country", {
   id: varchar("id", { length: 30 }).primaryKey().notNull(),
-  name: text("name").notNull(),
-  slug: text("slug").notNull(),
   isDeleted: boolean("is_deleted").default(false),
   isHidden: boolean("is_hidden").default(false),
+  name: text("name").notNull(),
+  slug: text("slug").notNull(),
 });
 
 export const countryRelations = relations(country, ({ many }) => ({

@@ -2,12 +2,13 @@ import { Toaster } from "sonner";
 import { TRPCProvider } from "@/trpc/client";
 import { Inter } from "next/font/google";
 import Header from "@/components/header/header";
+import MobileHeader from "@/components/header/mobile-header";
+
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
- import { GoogleAnalytics } from "@next/third-parties/google";
-import Sidebar from "@/components/sidebar";
+// import { GoogleAnalytics } from "@next/third-parties/google";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 const title = "Phim Chill | Phim Mới | Mọt Phim ";
@@ -49,23 +50,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <GoogleAnalytics gaId="G-2Y7422LTWL" />
+    <html lang="vi" suppressHydrationWarning>
+      <body className={`${inter.className} bg-gray-900 text-white`}>
+        {/* <GoogleAnalytics gaId="G-2Y7422LTWL" /> */}
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>
             <Header />
-            <div className="min-h-screen bg-gray-900 text-white">
-              <div className="container mx-auto xl:px-4 py-4">
-                <div className="flex gap-6">
-                  <div className="flex-1">{children}</div>
-                  <div className="hidden xl:block">
-                    <Sidebar></Sidebar>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <MobileHeader />
+            <div className="max-w-[1200px] mx-auto">{children}</div>
 
             <Footer />
           </TRPCProvider>

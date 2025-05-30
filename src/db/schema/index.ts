@@ -5,5 +5,6 @@ export * from "./category";
 export * from "./episode";
 export * from "./movie_category";
 export * from "./movie_country";
+export * from "./movie_actor";
+export * from "./actor";
 export * from "./view";
-export * from "./level";

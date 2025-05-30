@@ -1,50 +1,90 @@
 "use client";
-import { trpc } from "@/trpc/client";
 import { ErrorBoundary } from "react-error-boundary";
-import { MovieDetailOutput } from "../type";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import LazyVideoPlayerWrapper from "../components/lazy-video-player-wrapper";
 import NoMoviesFound from "@/components/no-movie-found";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { trpc } from "@/trpc/client";
 import MovieDetail from "../components/movie-detail";
+import ListRelated from "../components/list-related";
+import SideBar from "../components/side-bar";
+import ListCategory from "../components/list-category";
 
 interface MoviePlayerViewProps {
   slug: string;
-  episodeId: string;
 }
 
-export const MoviePlayerView = ({ slug, episodeId }: MoviePlayerViewProps) => {
+export const MoviePlayerView = ({ slug }: MoviePlayerViewProps) => {
   return (
     <Suspense fallback={<MoviePlayerViewSkeleton></MoviePlayerViewSkeleton>}>
       <ErrorBoundary fallback={<NoMoviesFound />}>
-        <MoviePlayerViewSuspense slug={slug} episodeId={episodeId} />
+        <MoviePlayerViewSuspense slug={slug} />
       </ErrorBoundary>
     </Suspense>
   );
 };
-const MoviePlayerViewSuspense = ({ slug, episodeId }: MoviePlayerViewProps) => {
+const MoviePlayerViewSuspense = ({ slug }: MoviePlayerViewProps) => {
   const [data] = trpc.movieDetail.getBySlug.useSuspenseQuery({ slug });
-  const movie = data as MovieDetailOutput;
-  if (!movie) {
-    return <NoMoviesFound />;
-  }
-  const videoData = movie.episodes.filter(
-    (episode) => episode.slug === episodeId
-  )[0];
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { categories, episodes, countries, ...movie } = data;
   return (
-    <div className="p-4">
-      <div>
-        <h1 className="text-xl font-bold mb-2">
-          {movie.name} {movie.year} - Tập {videoData?.name}
-        </h1>
+    <div className="min-h-screen bg-gray-900 text-white">
+      {/* Header - Mobile Back Button */}
+      <div className="md:hidden p-4 border-b border-gray-700">
+        <Link href="/">
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+        </Link>
       </div>
-      <LazyVideoPlayerWrapper
-        src={videoData?.linkM3u8 ?? ""}
-        movieId={movie.id}
-        poster={movie.thumb_url ?? ""}
-      />
-      <MovieDetail movie={movie}></MovieDetail>
+
+      {/* Video Player Section */}
+      <div className="relative">
+        {/* Advertising Banners */}
+
+        {/* Main Content */}
+        <div className="container mx-auto px-4 flex flex-row">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Video Player */}
+            <div className="lg:col-span-3">
+              <div className="relative aspect-video bg-black rounded-lg overflow-hidden mb-4">
+                <video
+                  className="w-full h-full"
+                  controls
+                  poster={`/images/chuong-nhuoc-nam.jpg`}
+                >
+                  <source src="#" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+
+              {/* Video Info */}
+              <div>
+                <MovieDetail episodes={episodes} movie={movie}></MovieDetail>
+              </div>
+
+              {/* Tags */}
+              <div className="space-y-2">
+                <div className="text-sm">
+                  <span className="text-gray-400">Suzume Mino</span>
+                </div>
+                <ListCategory categories={categories}></ListCategory>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar - Related Videos */}
+          <div className="lg:col-span-1">
+            <h2 className="text-lg font-bold mb-4">Phim liên quan</h2>
+            <SideBar></SideBar>
+          </div>
+        </div>
+
+        {/* More Related Videos Grid */}
+        <ListRelated></ListRelated>
+      </div>
     </div>
   );
 };

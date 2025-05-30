@@ -6,18 +6,9 @@ export const dynamic = "force-dynamic";
 
 const Page = async () => {
   void trpc.movie.getTopNew.prefetch({
-    limit: 12,
+    limit: 20,
   });
-  void trpc.movie.getTopViewByTime.prefetch({
-    page: 1,
-    type: "weekly",
-    limit: 12,
-  });
-
-
-  void trpc.movie.getChỉeuRap.prefetch({
-    limit: 12,
-  });
+ 
   return (
     <HydrateClient>
       <MovieView></MovieView>

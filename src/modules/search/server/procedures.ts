@@ -29,7 +29,6 @@ export const searchRouter = createTRPCRouter({
       const searchCondition = keyword
         ? or(
             sql`LOWER(${movie.name}) LIKE LOWER(${searchKeyword})`,
-            sql`LOWER(${movie.origin_name}) LIKE LOWER(${searchKeyword})`,
             sql`LOWER(${movie.slug}) LIKE LOWER(${slugSearchKeyword})`
           )
         : undefined;

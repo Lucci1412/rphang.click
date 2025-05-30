@@ -1,69 +1,47 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import React from "react";
-import { Card, CardContent } from "./ui/card";
-import { Badge } from "./ui/badge";
 import Image from "next/image";
-import { Play, Star } from "lucide-react";
 interface Props {
   movie: any;
 }
 const MovieCard = ({ movie }: Props) => {
   return (
-    <Link
-      key={movie.id}
-      href={`/${
-        movie.type == "single"
-          ? "phim-le"
-          : movie.type == "series"
-          ? "phim-bo"
-          : movie.type == "hoathinh"
-          ? "hoat-hinh"
-          : "tvshow"
-      }/${movie.slug}-${movie.quality}-${movie.year}`}
-    >
-      <Card
-        className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-all duration-200 cursor-pointer group py-0 rounded-sm"
-      >
-        <CardContent className="p-0">
-          <div className="relative">
-            <Image
-              width={200}
-              height={280}
-              src={movie.thumb_url || "/placeholder.svg"}
-              className="w-full h-60 object-cover rounded-sm"
-              alt={movie.name}
-              quality={50}
-            />
-            <div className="absolute top-1 left-1">
-              <Badge
-                variant="secondary"
-                className="bg-green-600 text-white text-xs px-1 py-0"
-              >
-                {movie.episode_current}
-              </Badge>
-            </div>
-            <div className="absolute top-1 right-1">
-              <Badge
-                variant="secondary"
-                className="bg-black/70 text-white text-xs px-1 py-0"
-              >
-                <Star className="w-2 h-2 mr-1 fill-yellow-400 text-yellow-400" />
-                {movie.vote_average}
-              </Badge>
-            </div>
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <Play className="w-6 h-6 text-white" />
-            </div>
+    <Link key={movie.id} href={`/phim/${movie.slug}`} className="group">
+      <div className="relative aspect-video bg-gray-800 rounded-lg overflow-hidden">
+        <Image
+          src={`/images/chuong-nhuoc-nam.jpg`}
+          alt={movie.name}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform"
+        />
+        <div className="absolute top-2 left-2">
+          <span className="bg-red-600 text-xs px-2 py-1 rounded">Vietsub</span>
+        </div>
+        <div className="absolute bottom-2 right-2">
+          <span className="bg-black/70 text-xs px-2 py-1 rounded">
+            {movie.time}
+          </span>
+        </div>
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+          <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+            <svg
+              className="w-6 h-6 text-white ml-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M8 5v10l8-5-8-5z" />
+            </svg>
           </div>
-          <div className="p-2">
-            <h3 className="text-xs font-medium text-white truncate leading-tight">
-              {movie.name}
-            </h3>
-            <p className="text-xs text-gray-400 mt-1">{movie.year}</p>
-          </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+      <h3 className="mt-2 text-sm font-medium line-clamp-2 group-hover:text-red-500">
+        {movie.name}
+      </h3>
+      <div className="flex items-center justify-between mt-1 text-xs text-gray-400">
+        {/* <span>{movie.view} lượt xem</span> */}
+        {/* <span>{movie.category}</span> */}
+      </div>
     </Link>
   );
 };
