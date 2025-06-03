@@ -1,4 +1,4 @@
-name: Deployment Phimchillmoi.xyz
+name: Deployment vlxx69.club
 
 on:
   push:
@@ -17,12 +17,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd desktop/phimchillmoi_xyz
+            cd desktop/vlxx69_club
             git fetch origin
             git checkout main
             git pull
-            docker build -t phimchillmoi_xyz .
+            docker build -t vlxx69_club .
             docker image prune -f
-            docker stop phimchillmoi_xyz_container || true
-            docker rm phimchillmoi_xyz_container || true
-            docker run -d --name phimchillmoi_xyz_container -p 5002:3000 phimchillmoi_xyz
+            docker stop vlxx69_club_container || true
+            docker rm vlxx69_club_container || true
+            docker run -d --name vlxx69_club_container -p 3333:3000 vlxx69_club

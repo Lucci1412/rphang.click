@@ -2,9 +2,11 @@ import { db } from "@/db/index";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 import {
+  actor,
   category,
   country,
   movie,
+  movieActor,
   movieCategory,
   movieCountry,
   view,
@@ -165,6 +167,71 @@ export const movieRouter = createTRPCRouter({
           .from(movie)
           .innerJoin(movieCountry, eq(movie.id, movieCountry.movieId))
           .where(eq(movieCountry.countryId, countryData.id)),
+      ]);
+      const total = totalMoviesResult[0]?.count || 0;
+
+      // Kiểm tra có phim nào không
+      if (!movies.length && page === 1) {
+        return {
+          movies: [],
+          pagination: {
+            page,
+            limit,
+            total,
+            totalPages: Math.ceil(total / limit),
+          },
+        };
+      }
+
+      return {
+        movies: movies.map((item) => item.movie),
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages: Math.ceil(total / limit),
+        },
+      };
+    }),
+
+  getMovieByActor: baseProcedure
+    .input(
+      z.object({
+        actor: z.string(),
+        page: z.number().min(1).default(1),
+        limit: z.number().min(1).max(100).default(PAGE_LIMIT),
+      })
+    )
+    .query(async ({ input }) => {
+      const { actor: actorSlug, page, limit } = input;
+      const offset = (page - 1) * limit;
+      const whereCondition =
+        actorSlug && actorSlug !== "" ? eq(actor.name, actorSlug) : undefined;
+      // 1. Tìm category theo slug
+      const [actorData] = await db.select().from(actor).where(whereCondition);
+
+      if (!actorData) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "actor not found",
+        });
+      }
+
+      // 2. Lấy danh sách movie và tổng số phim (song song)
+      const [movies, totalMoviesResult] = await Promise.all([
+        db
+          .select()
+          .from(movie)
+          .innerJoin(movieActor, eq(movie.id, movieActor.movieId))
+          .where(eq(movieActor.actorId, actorData.id))
+          .limit(limit)
+          .offset(offset),
+
+        db
+          .select({ count: count() })
+          .from(movie)
+          .innerJoin(movieActor, eq(movie.id, movieActor.movieId))
+          .where(eq(movieActor.actorId, actorData.id)),
       ]);
       const total = totalMoviesResult[0]?.count || 0;
 

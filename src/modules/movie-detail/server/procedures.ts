@@ -3,9 +3,11 @@ import { db } from "@/db/index";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 import {
+  actor,
   country,
   episode,
   movie,
+  movieActor,
   movieCategory,
   movieCountry,
 } from "@/db/schema";
@@ -46,7 +48,7 @@ export const movieDetailRouter = createTRPCRouter({
       if (!movieData) throw new TRPCError({ code: "NOT_FOUND" });
 
       // 2. Thực hiện song song các truy vấn episodes và categories
-      const [episodes, categories, countries] = await Promise.all([
+      const [episodes, categories, countries, actors] = await Promise.all([
         // 2a. Lấy tất cả episodes theo movieId
         db.select().from(episode).where(eq(episode.movieId, movieData.id)),
 
@@ -61,6 +63,11 @@ export const movieDetailRouter = createTRPCRouter({
           .from(movieCountry)
           .innerJoin(country, eq(movieCountry.countryId, country.id))
           .where(eq(movieCountry.movieId, movieData.id)),
+        db
+          .select()
+          .from(movieActor)
+          .innerJoin(actor, eq(movieActor.actorId, actor.id))
+          .where(eq(movieActor.movieId, movieData.id)),
       ]);
 
       // 3. Trả về kết quả
@@ -69,6 +76,7 @@ export const movieDetailRouter = createTRPCRouter({
         episodes,
         categories,
         countries,
+        actors,
       };
     }),
   getEpisodeByMovieId: baseProcedure

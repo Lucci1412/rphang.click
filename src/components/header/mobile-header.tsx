@@ -10,7 +10,7 @@ const MobileHeader = () => {
       <header className="md:hidden bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
         <div className="flex items-center justify-between p-4">
           <Link href="/" className="text-red-500 font-bold text-xl">
-            VLXX.COM
+            vlxx69.com
           </Link>
 
           <div className="flex items-center space-x-2">

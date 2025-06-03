@@ -3,13 +3,18 @@ import React from "react";
 interface Props {
   movie: any;
   episodes: any;
+  changeServerName: (value: string) => void;
 }
-const MovieDetail = ({ movie, episodes }: Props) => {
+const MovieDetail = ({ movie, episodes, changeServerName }: Props) => {
   return (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 text-sm">
         {episodes.map((item: any, index: any) => (
-          <span key={index} className="bg-red-600 px-2 py-1 rounded text-xs">
+          <span
+            onClick={()=>changeServerName(item.link ?? "")}
+            key={index}
+            className="bg-red-600 px-2 py-1 rounded text-xs cursor-pointer"
+          >
             {item.serverName}
           </span>
         ))}

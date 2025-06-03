@@ -11,9 +11,8 @@ import { Metadata } from "next";
 // import { GoogleAnalytics } from "@next/third-parties/google";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
-const title = "Phim Chill | Phim Mới | Mọt Phim ";
-const des =
-  "Xem phim online nhanh nhất với Phim Chill | Phim Mới | Mọt Phim . Cập nhật nhanh chóng, tốc độ, nhièu phim mới các thể loại hot";
+const title = "VLXX - xem VLXX HD , sex Nhật Bản không che, sex Trung Quốc chọn lọc  ";
+const des = "Xem phim 18+ nhanh nhất tại vlxx";
 export const metadata: Metadata = {
   title: title,
   description: des,
@@ -31,10 +30,10 @@ export const metadata: Metadata = {
         url: "/images/logo_share.jpg",
         width: 1200,
         height: 630,
-        alt: "PhimChill Open Graph Image",
+        alt: "vlxx69.com Open Graph Image",
       },
     ],
-    siteName: "PhimChill",
+    siteName: "vlxx69.com",
     locale: "vi_VN",
   },
   twitter: {
@@ -51,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${inter.className} bg-gray-900 text-white`}>
+      <body className={`${inter.className} ng-black  text-white`}>
         {/* <GoogleAnalytics gaId="G-2Y7422LTWL" /> */}
         <ThemeProvider>
           <Toaster />

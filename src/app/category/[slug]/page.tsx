@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const url = `${process.env.NEXT_PUBLIC_SITE_URL}/the-loai/${slug}`;
   const [category] = await trpc.category.getBySlug({ slug });
-  return metaDataCustom(url, `Phim ${category.name} hay`);
+  return metaDataCustom(url, `Sex ${category.name} VLXX`);
 }
 
 const Page = async ({ params }: PageProps) => {

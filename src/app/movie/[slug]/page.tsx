@@ -1,41 +1,34 @@
-// import { metaDataCustom } from "@/lib/meta-data-custom";
+import { metaDataCustom } from "@/lib/meta-data-custom";
 import MoviePlayerView from "@/modules/movie-detail/ui/view/movie-player-view";
 import { trpc } from "@/trpc/server";
-// import { Metadata } from "next";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
-// export async function generateMetadata({
-//   params,
-// }: PageProps): Promise<Metadata> {
-//   const { slug, episode } = await params;
-//   const maxLength = 200;
-//   const parts = slug.split("-");
-//   const name = parts.slice(0, -2).join("-");
-//   const partsEpisode = episode.split("-");
-//   const episodeName = partsEpisode[1];
-//   const url = `${process.env.NEXT_PUBLIC_SITE_URL}/xem/${slug}/${episode}`;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
 
-//   const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug: name });
-//   const title = `Phim ${dataMovie.origin_name} ${dataMovie.year} Tập ${episodeName} VietSub + Thuyết Minh`;
-//   let limitedContent = dataMovie.content ?? "";
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}/phim/${slug}`;
 
-//   if (Number(limitedContent.length) > maxLength) {
-//     limitedContent = limitedContent.slice(0, maxLength) + "...";
-//   }
-//   return metaDataCustom(
-//     url,
-//     title,
-//     limitedContent,
-//     dataMovie.thumb_url || "/images/logo_share.jpg"
-//   );
-// }
+  const dataMovie = await trpc.movieDetail.getBySlugNoEposide({ slug });
+  const title = `${dataMovie.name} - vlxx `;
+
+  return metaDataCustom(
+    url,
+    title,
+    dataMovie.content ?? "",
+    dataMovie.thumb_url || "/images/logo_share.jpg"
+  );
+}
 const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
-  void trpc.movieDetail.getBySlug.prefetch({ slug: slug });
- 
-  return <MoviePlayerView slug={slug}  />;
+  void trpc.movieDetail.getBySlug.prefetch({ slug });
+  void trpc.movie.getTopNew.prefetch({ limit: 10 });
+
+  return <MoviePlayerView slug={slug} />;
 };
 
 export default Page;

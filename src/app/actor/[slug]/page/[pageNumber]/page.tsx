@@ -1,5 +1,5 @@
 import { PAGE_LIMIT } from "@/const";
-import { CountryMovieView } from "@/modules/country/ui/views/country-movie-view";
+import { CategoryMovieView } from "@/modules/category/ui/views/category-movie-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 export const dynamic = "force-dynamic";
 interface PageProps {
@@ -8,14 +8,17 @@ interface PageProps {
 const Page = async ({ params }: PageProps) => {
   const { slug, pageNumber } = await params;
 
-  void trpc.movie.getMovieByCountry.prefetch({
-    country: slug,
+  void trpc.movie.getMovieByCategory.prefetch({
+    category: slug,
     page: Number(pageNumber),
     limit: PAGE_LIMIT,
   });
   return (
     <HydrateClient>
-      <CountryMovieView country={slug} page={Number(pageNumber)}></CountryMovieView>
+      <CategoryMovieView
+        category={slug}
+        page={Number(pageNumber)}
+      ></CategoryMovieView>
     </HydrateClient>
   );
 };
