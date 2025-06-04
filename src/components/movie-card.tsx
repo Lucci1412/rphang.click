@@ -10,7 +10,7 @@ const MovieCard = ({ movie }: Props) => {
     <Link key={movie.id} href={`/phim/${movie.slug}`} className="group">
       <div className="relative aspect-video bg-gray-800 rounded-lg overflow-hidden">
         <Image
-          src={`/images/chuong-nhuoc-nam.jpg`}
+          src={movie.thumb_url}
           alt={movie.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform"
