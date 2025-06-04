@@ -8,10 +8,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-// import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 // import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
-const title = "VLXX - xem VLXX HD , sex Nhật Bản không che, sex Trung Quốc chọn lọc  ";
+const title =
+  "VLXX - xem VLXX HD , sex Nhật Bản không che, sex Trung Quốc chọn lọc  ";
 const des = "Xem phim 18+ nhanh nhất tại vlxx";
 export const metadata: Metadata = {
   title: title,
@@ -51,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.className} ng-black  text-white`}>
-        {/* <GoogleAnalytics gaId="G-2Y7422LTWL" /> */}
+        <GoogleAnalytics gaId="G-BSD34PX7Z7" />
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>
