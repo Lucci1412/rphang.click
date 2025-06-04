@@ -53,6 +53,7 @@ export default function RootLayout({
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.className} ng-black  text-white`}>
         <GoogleAnalytics gaId="G-BSD34PX7Z7" />
+    
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>
