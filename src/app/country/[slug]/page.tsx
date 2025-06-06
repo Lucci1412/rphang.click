@@ -1,6 +1,6 @@
 import { PAGE_LIMIT } from "@/const";
 import { metaDataCustom } from "@/lib/meta-data-custom";
-import { CategoryMovieView } from "@/modules/category/ui/views/category-movie-view";
+import { CountryMovieView } from "@/modules/country/ui/views/country-movie-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 import { Metadata } from "next";
 
@@ -26,7 +26,7 @@ const Page = async ({ params }: PageProps) => {
   });
   return (
     <HydrateClient>
-      <CategoryMovieView category={slug}></CategoryMovieView>
+      <CountryMovieView country={slug}></CountryMovieView>
     </HydrateClient>
   );
 };

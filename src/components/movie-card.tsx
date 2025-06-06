@@ -8,12 +8,14 @@ interface Props {
 const MovieCard = ({ movie }: Props) => {
   return (
     <Link key={movie.id} href={`/phim/${movie.slug}`} className="group">
-      <div className="relative aspect-video bg-gray-800 rounded-lg overflow-hidden">
+      <div className="relative aspect-video bg-gray-800 rounded-lg overflow-hidden ">
         <Image
           src={movie.thumb_url}
           alt={movie.name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover group-hover:scale-105 transition-transform"
+          quality={40}
         />
         <div className="absolute top-2 left-2">
           <span className="bg-red-600 text-xs px-2 py-1 rounded">Vietsub</span>

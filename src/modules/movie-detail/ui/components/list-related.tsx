@@ -20,7 +20,9 @@ const ListRelated = () => {
                   src={movie.thumb_url ?? ""}
                   alt={movie.name}
                   fill
+                  quality={40}
                   className="object-cover group-hover:scale-105 transition-transform"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="absolute top-2 left-2">
                   <span className="bg-red-600 text-xs px-2 py-1 rounded">

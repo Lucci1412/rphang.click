@@ -36,9 +36,9 @@ const MovieListSuspense = ({ actor, page }: MovieListProps) => {
     return <NoMoviesFound search={""} />;
   }
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col gap-y-4   ">
+    <div className="max-w-[1400px] mx-2  my-2 xl:mx-auto flex flex-col gap-y-4   ">
       <div className="container mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
           {movies?.map((movie, index) => (
             <MovieCard key={index} movie={movie} />
           ))}

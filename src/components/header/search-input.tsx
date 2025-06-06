@@ -1,9 +1,9 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { Button } from "../ui/button";
 
 const SearchInput = () => {
   const [keyword, setKeyword] = useState("");
@@ -58,17 +58,21 @@ const SearchInput = () => {
           onChange={(e) => setKeyword(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Tìm kiếm phim..."
-          className="w-40  md:w-72 bg-gray-700 border-gray-600 text-white placeholder-gray-400 text-sm"
+          className=" flex-1 w-40  md:w-72 bg-gray-700 border-gray-600 rounded-none text-white placeholder-gray-400 text-sm"
           disabled={isLoading}
         />
-        {keyword && (
-          <Search
-            onClick={() => {
+
+        <Button
+          onClick={() => {
+            if (keyword) {
               handleSearch();
-            }}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 cursor-pointer"
-          />
-        )}
+            }
+          }}
+          size="sm"
+          className="bg-[#cf2e2e] rounded-none hover:bg-red-700 text-white h-9"
+        >
+          Tìm kiếm
+        </Button>
       </div>
     </div>
   );

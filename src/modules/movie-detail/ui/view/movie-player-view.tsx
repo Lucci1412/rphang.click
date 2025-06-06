@@ -27,7 +27,6 @@ const MoviePlayerViewSuspense = ({ slug }: MoviePlayerViewProps) => {
   const [serverPlayUrl, setServerPlayUrl] = useState<string>(
     episodes[0]?.link ?? ""
   );
-  console.log(episodes);
   return (
     <div className="min-h-screen  text-white">
       {/* Header - Mobile Back Button */}
@@ -37,6 +36,7 @@ const MoviePlayerViewSuspense = ({ slug }: MoviePlayerViewProps) => {
             <ArrowLeft className="h-5 w-5" />
           </Button>
         </Link>
+        <span className="text-sm"> Đổi server2 nếu server1 lỗi,tải chậm</span>
       </div>
 
       {/* Video Player Section */}
