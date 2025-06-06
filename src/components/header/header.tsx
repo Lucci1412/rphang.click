@@ -25,12 +25,20 @@ const Header = () => {
     },
     {
       name: "Sex Mỹ - Châu Âu",
-      url: "/the-loai/chau-au",
+      url: "/quoc-gia/chau-au",
+    },
+     {
+      name: "Sex Việt Nam ",
+      url: "/quoc-gia/viet-nam",
     },
     {
       name: "Sex Trung Quốc",
-      url: "/the-loai/trung-quoc",
+      url: "/quoc-gia/trung-quoc",
     },
+    // {
+    //   name: "Sex Hàn Quốc",
+    //   url: "/quoc-gia/han-quoc",
+    // },
   ];
   const listOrigin = [
     {
@@ -43,7 +51,7 @@ const Header = () => {
     },
     {
       name: "JAV",
-      url: "/",
+      url: "/quoc-gia/nhat-banban",
     },
     {
       name: "XXX",

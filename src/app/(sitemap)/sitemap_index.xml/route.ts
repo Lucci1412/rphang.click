@@ -3,23 +3,19 @@ import { NextResponse } from "next/server";
 const BASE_URL =
   process.env.NEXT_PUBLIC_LOCAL_URL || process.env.NEXT_PUBLIC_SITE_URL;
 const listSiteMaps = [
-
   {
     url: `${BASE_URL}/the-loai/sitemap.xml`,
   },
   {
     url: `${BASE_URL}/quoc-gia/sitemap.xml`,
   },
-  {
-    url: `${BASE_URL}/phim/sitemap.xml`,
-  },
+  // {
+  //   url: `${BASE_URL}/phim/sitemap.xml`,
+  // },
 ];
 export async function GET() {
   try {
-    const sitemaps = [
-      ...listSiteMaps.map((sitemap) => sitemap.url),
-    ];
-
+    const sitemaps = [...listSiteMaps.map((sitemap) => sitemap.url)];
 
     // Build XML
     const sitemapIndexXML = await buildSitemapIndex(sitemaps);
