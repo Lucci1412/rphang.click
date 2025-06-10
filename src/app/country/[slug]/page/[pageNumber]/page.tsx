@@ -1,4 +1,5 @@
 import { PAGE_LIMIT } from "@/const";
+import { removeFirstTwoWords } from "@/lib/utils";
 import { CountryMovieView } from "@/modules/country/ui/views/country-movie-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 export const dynamic = "force-dynamic";
@@ -7,16 +8,17 @@ interface PageProps {
 }
 const Page = async ({ params }: PageProps) => {
   const { slug, pageNumber } = await params;
+  const slugEdit = removeFirstTwoWords(slug, 2);
 
   void trpc.movie.getMovieByCountry.prefetch({
-    country: slug,
+    country: slugEdit,
     page: Number(pageNumber),
     limit: PAGE_LIMIT,
   });
   return (
     <HydrateClient>
       <CountryMovieView
-        country={slug}
+        country={slugEdit}
         page={Number(pageNumber)}
       ></CountryMovieView>
     </HydrateClient>

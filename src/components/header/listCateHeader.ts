@@ -16,28 +16,33 @@ export const listCate = [
     url: "/the-loai/vung-trom",
   },
   {
+    name: "Phim sex gái xinh",
+    url: "/the-loai/sexhd",
+  },
+  
+  {
     name: "Phim sex hiếp dâm",
     url: "/the-loai/hiep-dam",
   },
   {
     name: "Sex Mỹ - Châu Âu",
-    url: "/quoc-gia/chau-au",
+    url: "/quoc-gia/phim-sex-chau-au",
   },
   {
     name: "Sex Việt Nam ",
-    url: "/quoc-gia/viet-nam",
+    url: "/quoc-gia/phim-sex-viet-nam",
   },
   {
     name: "Sex Trung Quốc",
-    url: "/quoc-gia/trung-quoc",
+    url: "/quoc-gia/phim-sex-trung-quoc",
   },
   {
     name: "Sex Hàn Quốc",
-    url: "/quoc-gia/han-quoc",
+    url: "/quoc-gia/phim-sex-han-quoc",
   },
   {
     name: "Sex Nhật Bản",
-    url: "/quoc-gia/nhat-ban",
+    url: "/quoc-gia/phim-sex-nhat-ban",
   },
 ];
 export const listOrigin = [

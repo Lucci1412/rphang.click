@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .from(country)
     .where(eq(country.isHidden, false));
   const items = countries.map((item) => ({
-    url: `${BASE_URL}/quoc-gia/${item.slug}`,
+    url: `${BASE_URL}/quoc-gia/phim-sex-${item.slug}`,
     lastModified: format(new Date(), "yyyy-MM-dd"),
   }));
 

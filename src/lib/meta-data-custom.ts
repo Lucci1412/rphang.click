@@ -6,7 +6,8 @@ export const metaDataCustom = (
 ) => {
   const desc =
     description ||
-    `Xem ${title} PhimChillMoi. Cập nhật phim hằng ngày nhanh nhất, chất lượng HD Full Vietsub + Thuyết Minh.`;
+    `Tuyển chọn phim sex ${title} vietsub 18+ chất lượng cao. VLXX cập nhật mỗi ngày các phim người lớn Việt Nam, Nhật Bản, Châu Âu hot nhất hiện nay.
+`;
 
   return {
     title: `${title}`,
