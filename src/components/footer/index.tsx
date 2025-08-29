@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-black border-t border-gray-700 py-6 mt-4">
       <div className="container mx-auto px-4 text-sm text-gray-400">
         <p className="mb-4">
-          Vlxx69.club là web xem <span className="text-red-500">phim sex</span>{" "}
+          Rphang.click là web xem <span className="text-red-500">phim sex</span>{" "}
           dành cho người lớn trên 18 tuổi, giúp bạn giải trí, thỏa mãn sinh lý,
           dưới 18 tuổi xin vui lòng quay ra.
         </p>

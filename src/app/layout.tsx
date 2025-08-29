@@ -9,14 +9,27 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-// import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
+const keywords = [
+  "rphang",
+  "rphang clip",
+  "nhật ký mây mưa rphang",
+  "sex rphang",
+  "rphang sex",
+  "clip sex rphang",
+  "rphang nhật ký mây mưa",
+  "rphang mbbg",
+];
+
 const title =
-  "VLXX - xem VLXX HD , sex Nhật Bản không che, sex Trung Quốc chọn lọc  ";
-const des = "Xem phim 18+ nhanh nhất tại vlxx";
+  "Rphang - Clip Rphang, Nhật ký mây mưa rphang, sex rphang chọn lọc";
+const des =
+  "Xem rphang, clip sex rphang, nhật ký mây mưa rphang, sex rphang, rphang mbbg... nội dung chọn lọc, cập nhật nhanh nhất.";
+
 export const metadata: Metadata = {
   title: title,
   description: des,
+  keywords: keywords,
   icons: {
     icon: "/images/favicon.ico",
     apple: "/images/favicon.ico",
@@ -53,7 +66,7 @@ export default function RootLayout({
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.className} ng-black  text-white`}>
         <GoogleAnalytics gaId="G-BSD34PX7Z7" />
-    
+
         <ThemeProvider>
           <Toaster />
           <TRPCProvider>
