@@ -1,4 +1,4 @@
-name: Deployment vlxx69.club
+name: Deployment rphang
 
 on:
   push:
@@ -17,12 +17,12 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: 22
           script: |
-            cd desktop/vlxx69_club
+            cd home/rphang
             git fetch origin
             git checkout main
             git pull
-            docker build -t vlxx69_club .
+            docker build -t rphang .
             docker image prune -f
-            docker stop vlxx69_club_container || true
-            docker rm vlxx69_club_container || true
-            docker run -d --name vlxx69_club_container -p 3333:3000 vlxx69_club
+            docker stop rphang_container || true
+            docker rm rphang_container || true
+            docker run -d --name rphang_container -p 3333:3000 rphang
