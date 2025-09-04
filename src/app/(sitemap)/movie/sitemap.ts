@@ -11,6 +11,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${BASE_URL}/phim/${item.slug}`,
     lastModified: format(new Date(), "yyyy-MM-dd"),
   }));
-
   return [...items];
 }
