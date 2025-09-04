@@ -19,7 +19,7 @@ jobs:
           script: |
             cd home/rphang
             git fetch origin
-            git checkout main
+            git checkout main 
             git pull
             docker build -t rphang .
             docker image prune -f
