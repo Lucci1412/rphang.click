@@ -9,9 +9,9 @@ const listSiteMaps = [
   {
     url: `${BASE_URL}/quoc-gia/sitemap.xml`,
   },
-  // {
-  //   url: `${BASE_URL}/phim/sitemap.xml`,
-  // },
+  {
+    url: `${BASE_URL}/phim/sitemap.xml`,
+  },
 ];
 export async function GET() {
   try {

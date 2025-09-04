@@ -19,17 +19,21 @@ export const listCate = [
     name: "Phim sex gái xinh",
     url: "/the-loai/sexhd",
   },
-  
+
   {
     name: "Phim sex hiếp dâm",
     url: "/the-loai/hiep-dam",
+  },
+  {
+    name: "Hentai",
+    url: "/the-loai/hentai",
   },
   {
     name: "Sex Mỹ - Châu Âu",
     url: "/quoc-gia/phim-sex-chau-au",
   },
   {
-    name: "Sex Việt Nam ",
+    name: " Việt Nam Clip ",
     url: "/quoc-gia/phim-sex-viet-nam",
   },
   {
@@ -44,16 +48,20 @@ export const listCate = [
     name: "Sex Nhật Bản",
     url: "/quoc-gia/phim-sex-nhat-ban",
   },
+  {
+    name: "Học sinh",
+    url: "/the-loai/hoc-sinh",
+  },
 ];
 export const listOrigin = [
   {
     name: "XVIDEOS",
     url: "/the-loai/xvideos",
   },
-  // {
-  //   name: "XNXX",
-  //   url: "/",
-  // },
+  {
+    name: "PornHub",
+    url: "/the-loai/pornhub",
+  },
   // {
   //   name: "JAV",
   //   url: "/quoc-gia/nhat-banban",
